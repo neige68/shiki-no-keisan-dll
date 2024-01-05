@@ -1,0 +1,29 @@
+# <sample.nmake> -*- mode: makefile; coding: cp932-dos -*-
+#
+# Project shiki-no-keisan-dll/sample/cs
+# Copyright (C) 2024 neige68
+#
+# Compiler:  Visual Studio 2019 à»ç~ÇÃ CSC
+#
+
+!if !defined(MAKE) || !defined(MAKEDIR)
+! error sample.nmake: Use Microsoft nmake.
+!endif
+
+NAME = sample
+TARGETDIR = build
+BINDIR = ..\..\bin
+
+all : $(TARGETDIR)\Debug\$(NAME).exe $(TARGETDIR)\Release\$(NAME).exe
+
+$(TARGETDIR)\Debug\$(NAME).exe : $(NAME).cs
+        if not exist $(TARGETDIR)\Debug mkdir $(TARGETDIR)\Debug
+	csc /platform:anycpu /r:System.Numerics.dll /d:Debug $(NAME).cs /out:$(TARGETDIR)\Debug\$(NAME).exe
+
+$(TARGETDIR)\Release\$(NAME).exe : $(NAME).cs
+        if not exist $(TARGETDIR)\Release mkdir $(TARGETDIR)\Release
+	csc /platform:anycpu /r:System.Numerics.dll /optimize+ /debug- $(NAME).cs /out:$(TARGETDIR)\Release\$(NAME).exe
+
+# Local variables:
+# indent-tabs-mode: t
+# End: 

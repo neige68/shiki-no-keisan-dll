@@ -1,0 +1,372 @@
+// <shiki_no_keisan.cpp> -*- coding: utf-8 -*-
+//
+// Project shiki-no-keisan-dll
+// Copyright (C) 2024 neige68
+//
+/// \file
+/// \brief 計算式評価 DLL
+//
+// Compiler: VC14.2
+//
+
+#define SHIKI_NO_KEISAN_EXPORT
+#include "shiki_no_keisan.h"
+
+#include "bltinfun.h"           // BuiltInFunctions
+#include "charconv.h"           // to_utf8
+
+#include <boost/fusion/include/adapt_struct.hpp> // BOOST_FUSION_ADAPT_STRUCT
+#include <boost/optional.hpp>                    // boost::optional
+#include <boost/spirit/home/x3.hpp>              // boost::spirit::x3
+#include <boost/spirit/home/x3/support/ast/variant.hpp> // boost::spirit::x3::variant
+
+#include <cmath>                // std::fabs
+#include <list>                 // std::list
+#include <map>                  // std::map
+#include <numeric>              // std::accumulate
+#include <stdexcept>            // std::runtime_error
+#include <string>               // std::string
+
+using namespace std;
+
+//************************************************************
+// this part is based on spirit/example/x3/calc/calc4b.cpp
+// Copyright (c) 2001-2014 Joel de Guzman
+
+namespace x3 = boost::spirit::x3;
+
+//------------------------------------------------------------
+//
+/// AST - 抽象構文木(Abstract Syntax Tree)
+//
+
+namespace ast {
+
+/// 空
+struct nil {};
+
+struct signed_;
+struct exp_operation;
+struct expression;
+struct function_call;
+struct symbol;
+
+/// オペランド(演算対象)
+struct operand : x3::variant<
+    nil
+    , double
+    , x3::forward_ast<signed_>
+    , x3::forward_ast<exp_operation>
+    , x3::forward_ast<expression>
+    , x3::forward_ast<function_call>
+    >
+{
+    using base_type::base_type;
+    using base_type::operator=;
+};
+
+/// 符号付け(単項演算)
+struct signed_
+{
+    wchar_t sign;
+    operand operand_;
+};
+
+/// 2項演算
+struct operation
+{
+    wchar_t operator_;
+    operand operand_;
+};
+
+/// 冪乗演算
+//
+/// 他の2項演算とは結合方向が異なる
+struct exp_operation
+{
+    operand first;
+    boost::optional<operand> rest;
+};
+
+/// 式
+struct expression
+{
+    operand first;
+    std::list<operation> rest;
+};
+
+/// シンボル(関数名)
+struct symbol
+{
+    wchar_t first;
+    std::list<wchar_t> rest;
+};
+
+/// 関数呼び出し
+struct function_call
+{
+    symbol fun_name;
+    operand first_arg;
+    std::list<operand> rest_args;
+};
+} // namespace ast
+
+BOOST_FUSION_ADAPT_STRUCT(ast::signed_,
+    sign, operand_
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::operation,
+    operator_, operand_
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::exp_operation,
+    first, rest
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::expression,
+    first, rest
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::function_call,
+    fun_name, first_arg, rest_args
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::symbol,
+    first, rest
+)
+
+//============================================================
+//
+// AST evaluator
+//
+
+namespace ast {
+
+/// AST evaluator
+struct eval {
+    typedef double result_type;
+
+    double operator()(nil) const { BOOST_ASSERT(0); return 0; }
+    double operator()(double n) const { return n; }
+
+    double operator()(double lhs, operation const& x) const {
+        double rhs = boost::apply_visitor(*this, x.operand_);
+        switch (x.operator_)
+        {
+        case '+': return lhs + rhs;
+        case '-': return lhs - rhs;
+        case '*': return lhs * rhs;
+        case '/': return lhs / rhs;
+        }
+        BOOST_ASSERT(0);
+        return 0;
+    }
+
+    double operator()(signed_ const& x) const
+        {
+            double rhs = boost::apply_visitor(*this, x.operand_);
+            switch (x.sign)
+            {
+            case '-': return -rhs;
+            case '+': return +rhs;
+            }
+            BOOST_ASSERT(0);
+            return 0;
+        }
+
+    double operator()(exp_operation const& x) const
+        {
+            double lhs = boost::apply_visitor(*this, x.first);
+            if (x.rest) {
+                double rhs = boost::apply_visitor(*this, x.rest.get());
+                return pow(lhs, rhs);
+            }
+            return lhs;
+        }
+
+    double operator()(expression const& x) const
+        {
+            return std::accumulate(
+                x.rest.begin(), x.rest.end()
+                , boost::apply_visitor(*this, x.first)
+                , *this);
+        }
+    double operator()(function_call const& x) const
+        {
+            std::wstring fun_name = (*this)(x.fun_name);
+            std::vector<double> args;
+            args.push_back(boost::apply_visitor(*this, x.first_arg));
+            for (auto const& i : x.rest_args)
+                args.push_back(boost::apply_visitor(*this, i));
+            return BuiltInFunctions::Instance()(fun_name, args);
+        }
+    std::wstring operator()(symbol const& x) const
+        {
+            std::wstring result(1, x.first);
+            for (auto i : x.rest)
+                result += i;
+            return result;
+        }
+};
+} // namespace ast
+
+//------------------------------------------------------------
+//
+/// 文法
+//
+
+namespace grammar {
+
+using x3::double_;
+using x3::standard_wide::char_;
+using x3::standard_wide::lit;
+using x3::standard_wide::alpha;
+using x3::standard_wide::alnum;
+
+x3::rule<class expression, ast::expression> const expression("式");
+x3::rule<class term, ast::expression> const term("項");
+x3::rule<class factor, ast::operand> const factor("因子");
+x3::rule<class factor2, ast::exp_operation> const factor2("因子2");
+x3::rule<class prim, ast::operand> const prim("原始");
+x3::rule<class function_call, ast::function_call> const function_call("関数呼び出し");
+x3::rule<class symbol, ast::symbol> const symbol("シンボル");
+
+auto const expression_def =
+    term
+    >> *(   (char_(L'+') >> term)
+        |   (char_(L'-') >> term)
+        )
+    ;
+
+auto const term_def =
+    factor
+    >> *(   (char_(L'*') >> factor)
+        |   (char_(L'/') >> factor)
+        )
+    ;
+
+auto const factor_def =
+        (char_(L'-') >> factor)
+    |   (char_(L'+') >> factor)
+    |   factor2
+    ;
+
+auto const factor2_def =
+    prim
+    >>  -((lit(L'^') | L"**") >> factor)
+    ;
+
+auto const prim_def =
+        function_call
+    |   double_
+    |   L'(' >> expression >> L')'
+    ;
+
+auto const function_call_def =
+    symbol
+    >>   L'('
+    >>   expression
+    >>   *(L',' >> expression)
+    >>   L')'
+    ;
+
+auto const symbol_def =
+    alpha
+    >>    *alnum
+    ;
+
+BOOST_SPIRIT_DEFINE(expression, term, factor, factor2, prim, function_call, symbol);
+        
+auto start = expression;
+
+} // namespace grammer
+
+//************************************************************
+
+/// 一つの文字列を処理
+double process(const wstring& str)
+{
+    ast::expression expression;             // Our expression (AST)
+
+    auto iter = str.begin();
+    auto end = str.end();
+    boost::spirit::x3::standard_wide::space_type space;
+    bool r = phrase_parse(iter, end, grammar::start, space, expression);
+
+    if (r && iter == end) {
+        return ast::eval{}(expression);
+    }
+    else {
+        std::wstring rest{iter, end};
+        wostringstream oss;
+        oss << L"構文解析エラー: " << rest;
+        throw runtime_error(to_utf8(oss.str()));
+    }
+}
+
+//------------------------------------------------------------
+
+/// エラーメッセージ
+thread_local wstring ErrorMessage;
+/// エラーメッセージ ANSI(MBCS) 版
+thread_local string ErrorMessageA;
+
+double __stdcall SHIKI_NO_KEISAN_Eval(const wchar_t* mathExpr)
+{
+    try {
+        return process(mathExpr);
+    }
+    catch (const exception& x) {
+        ErrorMessage = to_wide(x.what());
+        return nan("");
+    }
+}
+
+double __stdcall SHIKI_NO_KEISAN_EvalA(const char* mathExpr)
+{
+    return SHIKI_NO_KEISAN_Eval(to_wide(mathExpr).c_str());
+}
+
+void __stdcall SHIKI_NO_KEISAN_ClearErrorMessage()
+{
+    ErrorMessage.clear();
+}
+
+const wchar_t* __stdcall SHIKI_NO_KEISAN_GetErrorMessage()
+{
+    return ErrorMessage.c_str();
+}
+
+const char* __stdcall SHIKI_NO_KEISAN_GetErrorMessageA()
+{
+    ErrorMessageA = to_acp(ErrorMessage);
+    return ErrorMessageA.c_str();
+}
+
+double __stdcall SHIKI_NO_KEISAN_SetRelativeErrorThreshold(double e)
+{
+    double result = BuiltInFunctions::Instance().RelativeErrorThreshold();
+    BuiltInFunctions::Instance().SetRelativeErrorThreshold(e);
+    return result;
+}
+
+double __stdcall SHIKI_NO_KEISAN_GetRelativeErrorThreshold()
+{
+    return BuiltInFunctions::Instance().RelativeErrorThreshold();
+}
+
+double __stdcall SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(double e)
+{
+    double result = BuiltInFunctions::Instance().AbsoluteErrorThreshold();
+    BuiltInFunctions::Instance().SetAbsoluteErrorThreshold(e);
+    return result;
+}
+
+double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold()
+{
+    return BuiltInFunctions::Instance().AbsoluteErrorThreshold();
+}
+
+//------------------------------------------------------------
+
+// end of <shiki_no_keisan.cpp>
