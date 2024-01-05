@@ -2,8 +2,12 @@
 @echo off
 rem
 rem Project shiki-no-keisan-dll/sample/vb
+
 rem Copyright (C) 2024 neige68
-rem
+rem Distributed under the Boost Software License, Version 1.0.
+rem (See accompanying file LICENSE or copy at
+rem  https://www.boost.org/LICENSE_1_0.txt)
+
 rem Note: build
 rem
 rem Windows:   10 and lator

@@ -1,8 +1,12 @@
 // <sample.cs>
 // 
 // Project shiki-no-keisan-dll/sample/cs
+
 // Copyright (C) 2024 neige68
-// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE or copy at
+//  https://www.boost.org/LICENSE_1_0.txt)
+
 // Note: sample
 // 
 // Compiler: Visual Studio 2019 à»ç~ÇÃ CSC
