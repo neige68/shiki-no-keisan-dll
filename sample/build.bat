@@ -16,10 +16,13 @@ rem
 setlocal
 pushd %~dp0
 
-call src\build.bat
+call cs\build.bat
 if errorlevel 1 goto err
-call sample\build.bat
+call vb\build.bat
 if errorlevel 1 goto err
+call vc\build.bat
+if errorlevel 1 goto err
+call vcpp\build.bat
 
 :err
 popd
