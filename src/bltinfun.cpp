@@ -52,7 +52,7 @@ double BuiltInFunctions::Apply(wstring const& name, Args const& args)
 //
 
 /// 組み込み関数登録
-#define REGIGER_BUILT_IN_FUNCTION(name, expr) \
+#define REGISTER_BUILT_IN_FUNCTION(name, expr) \
 class reg_## name { \
 public: \
     reg_ ## name() { \
@@ -65,7 +65,7 @@ reg_## name inst_reg_ ## name;
 //
 /// 平方根 sqrt(x)
 //
-REGIGER_BUILT_IN_FUNCTION(sqrt, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(sqrt, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return sqrt(args[0]);
     throw runtime_error(to_utf8(L"関数 sqrt は1個の引数が必要です."));
@@ -79,7 +79,7 @@ REGIGER_BUILT_IN_FUNCTION(sqrt, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// exp(x)
 //
-REGIGER_BUILT_IN_FUNCTION(exp, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(exp, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return exp(args[0]);
     throw runtime_error(to_utf8(L"関数 exp は1個の引数が必要です."));
@@ -91,7 +91,7 @@ REGIGER_BUILT_IN_FUNCTION(exp, [] (BuiltInFunctions::Args const& args) -> double
 /// Excel 互換 \n
 /// b のデフォルト値は 10
 //
-REGIGER_BUILT_IN_FUNCTION(log, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(log, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return log10(args[0]);
     if (args.size() == 2)
@@ -102,7 +102,7 @@ REGIGER_BUILT_IN_FUNCTION(log, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// 自然対数 ln(x)
 //
-REGIGER_BUILT_IN_FUNCTION(ln, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(ln, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return log(args[0]);
     throw runtime_error(to_utf8(L"関数 ln は1個の引数が必要です."));
@@ -111,7 +111,7 @@ REGIGER_BUILT_IN_FUNCTION(ln, [] (BuiltInFunctions::Args const& args) -> double 
 //
 /// 常用対数 log10(x)
 //
-REGIGER_BUILT_IN_FUNCTION(log10, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(log10, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return log10(args[0]);
     throw runtime_error(to_utf8(L"関数 log10 は1個の引数が必要です."));
@@ -125,7 +125,7 @@ REGIGER_BUILT_IN_FUNCTION(log10, [] (BuiltInFunctions::Args const& args) -> doub
 //
 /// 符号 sign(x)
 //
-REGIGER_BUILT_IN_FUNCTION(sign, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(sign, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
         const double x = args[0];
         if (x < 0)
@@ -140,7 +140,7 @@ REGIGER_BUILT_IN_FUNCTION(sign, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// abs(x)
 //
-REGIGER_BUILT_IN_FUNCTION(abs, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(abs, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return abs(args[0]);
     throw runtime_error(to_utf8(L"関数 abs は1個の引数が必要です."));
@@ -149,7 +149,7 @@ REGIGER_BUILT_IN_FUNCTION(abs, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// 剰余 mod(x, y)
 //
-REGIGER_BUILT_IN_FUNCTION(mod, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(mod, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 2)
         return fmod(args[0], args[1]);
     throw runtime_error(to_utf8(L"関数 mod は2個の引数が必要です."));
@@ -163,7 +163,7 @@ REGIGER_BUILT_IN_FUNCTION(mod, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// max(x, ...)
 //
-REGIGER_BUILT_IN_FUNCTION(max, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(max, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() < 1)
         throw runtime_error(to_utf8(L"関数 max は1個以上の引数が必要です."));
     double result = args[0];
@@ -176,7 +176,7 @@ REGIGER_BUILT_IN_FUNCTION(max, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// min(x, ...)
 //
-REGIGER_BUILT_IN_FUNCTION(min, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(min, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() < 1)
         throw runtime_error(to_utf8(L"関数 min は1個以上の引数が必要です."));
     double result = args[0];
@@ -194,7 +194,7 @@ REGIGER_BUILT_IN_FUNCTION(min, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// sin(x)
 //
-REGIGER_BUILT_IN_FUNCTION(sin, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(sin, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return sin(args[0]);
     throw runtime_error(to_utf8(L"関数 sin は1個の引数が必要です."));
@@ -203,7 +203,7 @@ REGIGER_BUILT_IN_FUNCTION(sin, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// cos(x)
 //
-REGIGER_BUILT_IN_FUNCTION(cos, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(cos, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return cos(args[0]);
     throw runtime_error(to_utf8(L"関数 cos は1個の引数が必要です."));
@@ -212,7 +212,7 @@ REGIGER_BUILT_IN_FUNCTION(cos, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// tan(x)
 //
-REGIGER_BUILT_IN_FUNCTION(tan, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(tan, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return tan(args[0]);
     throw runtime_error(to_utf8(L"関数 tan は1個の引数が必要です."));
@@ -221,7 +221,7 @@ REGIGER_BUILT_IN_FUNCTION(tan, [] (BuiltInFunctions::Args const& args) -> double
 //
 /// asin(x)
 //
-REGIGER_BUILT_IN_FUNCTION(asin, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(asin, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return asin(args[0]);
     throw runtime_error(to_utf8(L"関数 asin は1個の引数が必要です."));
@@ -230,7 +230,7 @@ REGIGER_BUILT_IN_FUNCTION(asin, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// acos(x)
 //
-REGIGER_BUILT_IN_FUNCTION(acos, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(acos, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return acos(args[0]);
     throw runtime_error(to_utf8(L"関数 acos は1個の引数が必要です."));
@@ -239,7 +239,7 @@ REGIGER_BUILT_IN_FUNCTION(acos, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// atan(x)
 //
-REGIGER_BUILT_IN_FUNCTION(atan, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(atan, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return atan(args[0]);
     throw runtime_error(to_utf8(L"関数 atan は1個の引数が必要です."));
@@ -248,7 +248,7 @@ REGIGER_BUILT_IN_FUNCTION(atan, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// atan2(y, x)
 //
-REGIGER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 2)
         return atan2(args[0], args[1]);
     throw runtime_error(to_utf8(L"関数 atan2 は2個の引数が必要です."));
@@ -262,7 +262,7 @@ REGIGER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> doub
 //
 /// 床関数 -∞方向丸め floor(x) 
 //
-REGIGER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
         const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
         auto x = args[0];
@@ -284,7 +284,7 @@ REGIGER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> doub
 //
 /// 天井関数 +∞方向丸め ceil(x)
 //
-REGIGER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
         const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
         auto x = args[0];
@@ -306,7 +306,7 @@ REGIGER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 /// 0方向丸め trunc(x)
 //
-REGIGER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
         const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
         auto x = args[0];
@@ -347,7 +347,7 @@ double rounddown(double x, double d = 0)
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
 //
-REGIGER_BUILT_IN_FUNCTION(rounddown, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(rounddown, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
         throw runtime_error(to_utf8(L"関数 rounddown は1個か2個の引数が必要です."));
     int d = 0;
@@ -381,7 +381,7 @@ double roundup(double x, double d = 0)
 /// d が 0 (デフォルト)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
-REGIGER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
         throw runtime_error(to_utf8(L"関数 roundup は1個か2個の引数が必要です."));
     int d = 0;
@@ -416,7 +416,7 @@ double round(double x, double d = 0)
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
 //
-REGIGER_BUILT_IN_FUNCTION(round, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(round, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
         throw runtime_error(to_utf8(L"関数 round は1個か2個の引数が必要です."));
     int d = 0;
@@ -448,7 +448,7 @@ double random(double x, bool forceFloat = false)
 /// 引数なしおよび x が 0 のとき [0,1) の一様乱数(x が負の時も今はここ)
 /// x が正の整数のとき x 未満の非負整数の一様乱数
 /// x が正の非整数のとき x 未満の正の数の一様乱数
-REGIGER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
     if (args.size() > 1)
         throw runtime_error(to_utf8(L"関数 random は1個以下の引数が必要です."));
@@ -461,7 +461,7 @@ REGIGER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> dou
 //
 /// 引数なしおよび x が 0 のとき [0,1) の一様乱数(x が負の時も今はここ)
 /// x が正のとき x 未満の正の数の一様乱数
-REGIGER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
     if (args.size() > 1)
         throw runtime_error(to_utf8(L"関数 frandom は1個以下の引数が必要です."));
@@ -478,7 +478,7 @@ REGIGER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> do
 //
 /// gamma(x)
 //
-REGIGER_BUILT_IN_FUNCTION(gamma, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(gamma, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return boost::math::tgamma<double>(args[0]);
     throw runtime_error(to_utf8(L"関数 gamma は1個の引数が必要です."));
@@ -487,7 +487,7 @@ REGIGER_BUILT_IN_FUNCTION(gamma, [] (BuiltInFunctions::Args const& args) -> doub
 //
 /// gammaln(x) = ln(abs(gamma(x)))
 //
-REGIGER_BUILT_IN_FUNCTION(gammaln, [] (BuiltInFunctions::Args const& args) -> double {
+REGISTER_BUILT_IN_FUNCTION(gammaln, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
         return boost::math::lgamma<double>(args[0]);
     throw runtime_error(to_utf8(L"関数 gammaln は1個の引数が必要です."));
