@@ -23,10 +23,22 @@ all : $(TARGETDIR)\Debug\$(NAME).exe $(TARGETDIR)\Release\$(NAME).exe
 $(TARGETDIR)\Debug\$(NAME).exe : $(NAME).vb
         if not exist $(TARGETDIR)\Debug mkdir $(TARGETDIR)\Debug
 	vbc /platform:anycpu /r:System.Numerics.dll /d:Debug $(NAME).vb /out:$(TARGETDIR)\Debug\$(NAME).exe
+        if not exist $(TARGETDIR)\Debug\x86 mkdir $(TARGETDIR)\Debug\x86
+	replace /A $(BINDIR)\x86\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Debug\x86
+	replace /U $(BINDIR)\x86\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Debug\x86
+        if not exist $(TARGETDIR)\Debug\x64 mkdir $(TARGETDIR)\Debug\x64
+	replace /A $(BINDIR)\x64\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Debug\x64
+	replace /U $(BINDIR)\x64\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Debug\x64
 
 $(TARGETDIR)\Release\$(NAME).exe : $(NAME).vb
         if not exist $(TARGETDIR)\Release mkdir $(TARGETDIR)\Release
 	vbc /platform:anycpu /r:System.Numerics.dll /optimize+ /debug- $(NAME).vb /out:$(TARGETDIR)\Release\$(NAME).exe
+        if not exist $(TARGETDIR)\Release\x86 mkdir $(TARGETDIR)\Release\x86
+	replace /A $(BINDIR)\x86\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Release\x86
+	replace /U $(BINDIR)\x86\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Release\x86
+        if not exist $(TARGETDIR)\Release\x64 mkdir $(TARGETDIR)\Release\x64
+	replace /A $(BINDIR)\x64\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Release\x64
+	replace /U $(BINDIR)\x64\neige68.ShikiNoKeisan.dll $(TARGETDIR)\Release\x64
 
 # Local variables:
 # indent-tabs-mode: t
