@@ -89,12 +89,10 @@ static class cssample
     {
         SHIKI_NO_KEISAN_ClearErrorMessage();
         double Result = SHIKI_NO_KEISAN_Eval(Expr);
-        if (double.IsNaN(Result)) {
-            string Msg = SHIKI_NO_KEISAN_GetErrorMessage();
-            if (!string.IsNullOrEmpty(Msg)) {
-                Console.WriteLine("ERROR: " + Expr + " : " + Msg);
-                return;
-            }
+        string Msg = SHIKI_NO_KEISAN_GetErrorMessage();
+        if (!string.IsNullOrEmpty(Msg)) {
+            Console.WriteLine("ERROR: " + Expr + " : " + Msg);
+            return;
         }
         Console.WriteLine(Expr + " = " + Result);
     }

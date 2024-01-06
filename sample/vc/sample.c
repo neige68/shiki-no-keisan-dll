@@ -25,12 +25,10 @@ void EvalPrint(const char* str)
     
     SHIKI_NO_KEISAN_ClearErrorMessage();
     result = SHIKI_NO_KEISAN_EvalA(str);
-    if (isnan(result)) {
-        msg = SHIKI_NO_KEISAN_GetErrorMessageA();
-        if (msg && *msg) {
-            printf("Error: %s : %s\n", str, msg);
-            return;
-        }
+    msg = SHIKI_NO_KEISAN_GetErrorMessageA();
+    if (msg && *msg) {
+        printf("Error: %s : %s\n", str, msg);
+        return;
     }
     printf("%s = %g\n", str, result);
 }

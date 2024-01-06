@@ -72,12 +72,10 @@ Module vbsample
     Sub EvalPrint(Expr As String)
         SHIKI_NO_KEISAN_ClearErrorMessage
         Dim Result As Double = SHIKI_NO_KEISAN_Eval(Expr)
-        If Double.IsNaN(Result) Then
-            Dim Msg As String = SHIKI_NO_KEISAN_GetErrorMessage
-            If Msg > "" Then
-                Console.WriteLine("ERROR: " & Expr & " : " & Msg)
-                Exit Sub
-            End If
+        Dim Msg As String = SHIKI_NO_KEISAN_GetErrorMessage
+        If Msg > "" Then
+            Console.WriteLine("ERROR: " & Expr & " : " & Msg)
+            Exit Sub
         End If
         Console.WriteLine(Expr & " = " & Result)
     End Sub
