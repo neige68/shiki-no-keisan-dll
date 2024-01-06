@@ -15,7 +15,7 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 project(sample C)
 
 include_directories($ENV{INCLUDE})
-link_directories($ENV{LIB})
+link_directories($ENV{MYLIB})
 
 # /MP: マルチプロセス
 # /W4: 警告レベルを4とする
@@ -27,6 +27,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MAP")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /MAP")
 
 add_executable(sample sample.c)
-target_link_libraries(sample $ENV{LIB}/neige68.ShikiNoKeisan)
+target_link_libraries(sample $ENV{MYLIB}/neige68.ShikiNoKeisan)
 
 # end of <CMakeLists.txt>

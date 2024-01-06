@@ -56,7 +56,7 @@ rem x86
 set @BUILD=build
 set @BIN=..\..\bin\x86
 rem build ‘Š‘Î
-set LIB=..\..\..\lib\x86
+set MYLIB=..\..\..\lib\x86
 set @CMAKE_OPT=-G %CMAKE_GEN% -A Win32 
 call :common
 
@@ -65,7 +65,7 @@ rem x64
 set @BUILD=build64
 set @BIN=..\..\bin\x64
 rem build ‘Š‘Î
-set LIB=..\..\..\lib\x64
+set MYLIB=..\..\..\lib\x64
 set @CMAKE_OPT=-G %CMAKE_GEN% -A x64
 call :common
 goto pop1_end

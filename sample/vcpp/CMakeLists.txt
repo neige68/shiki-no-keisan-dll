@@ -31,7 +31,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 #------------------------------------------------------------
 
 include_directories($ENV{INCLUDE})
-link_directories($ENV{LIB})
+link_directories($ENV{MYLIB})
 
 # C++17 使用
 set(CMAKE_CXX_STANDARD "17")
@@ -46,6 +46,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MAP")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /MAP")
 
 add_executable(eval eval.cpp)
-target_link_libraries(eval $ENV{LIB}/neige68.ShikiNoKeisan)
+target_link_libraries(eval $ENV{MYLIB}/neige68.ShikiNoKeisan)
 
 # end of <CMakeLists.txt>
