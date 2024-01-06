@@ -23,14 +23,14 @@
 //
 /// \def SHIKI_NO_KEISAN_SPEC
 //
-/// \brief NSHIKIKS.DLL インポート/エクスポート指定
+/// \brief DLL インポート/エクスポート指定
 //
 /// \details
-/// NSHIKIKS.DLL 作成時には __declspec(dllexport),
+/// DLL 作成時には __declspec(dllexport),
 /// それ以外では __declspec(dllimport) と定義されることにより、
 /// 関数などのエクスポートとインポートを行う。
 //
-#ifdef SHIKI_NO_KEISAN_EXPORT // NSHIKIKS.DLL 作成側
+#ifdef SHIKI_NO_KEISAN_EXPORT // DLL 作成側
 # define SHIKI_NO_KEISAN_SPEC __declspec(dllexport)
 #else
 # define SHIKI_NO_KEISAN_SPEC __declspec(dllimport)
