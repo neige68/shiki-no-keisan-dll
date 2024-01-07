@@ -1,4 +1,4 @@
-// <sample.cs>
+// <sample.cs> -*- coding: utf-8 -*-
 // 
 // Project shiki-no-keisan-dll/sample/cs
 
@@ -9,14 +9,14 @@
 
 // Note: sample
 // 
-// Compiler: Visual Studio 2019 ˆÈ~‚Ì CSC
+// Compiler: Visual Studio 2019 ä»¥é™ã® CSC
 // 
 using System;
 using System.Runtime.InteropServices; // DLL Import
 static class cssample
 {
     //------------------------------------------------------------
-    // ŒvŽZŽ®•¶Žš—ñ‚ðŽó‚¯Žæ‚Á‚Ä•]‰¿‚µ‚Ä•Ô‚·
+    // è¨ˆç®—å¼æ–‡å­—åˆ—ã‚’å—ã‘å–ã£ã¦è©•ä¾¡ã—ã¦è¿”ã™
     // SHIKI_NO_KEISAN_Eval
     //------------------------------------------------------------
     // SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_Eval(const wchar_t* mathExpr);
@@ -27,7 +27,7 @@ static class cssample
     [DllImport("x64/neige68.ShikiNoKeisan.dll", EntryPoint="SHIKI_NO_KEISAN_Eval", CharSet = CharSet.Unicode)]
     public static extern double X64_SHIKI_NO_KEISAN_Eval(string mathExpr);
     //
-    // ’‡‰îŠÖ”
+    // ä»²ä»‹é–¢æ•°
     public static double SHIKI_NO_KEISAN_Eval(string mathExpr)
     {
         double Result;
@@ -40,7 +40,7 @@ static class cssample
         return Result;
     }
     //------------------------------------------------------------
-    // ƒGƒ‰[ƒƒbƒZ[ƒW
+    // ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     // SHIKI_NO_KEISAN_GetErrorMessage
     //------------------------------------------------------------
     // SHIKI_NO_KEISAN_SPEC const wchar_t* __stdcall SHIKI_NO_KEISAN_GetErrorMessage();
@@ -50,7 +50,7 @@ static class cssample
     [DllImport("x64/neige68.ShikiNoKeisan.dll", EntryPoint="SHIKI_NO_KEISAN_GetErrorMessage")]
     public static extern IntPtr X64_SHIKI_NO_KEISAN_GetErrorMessage();
     //
-    // ’‡‰îŠÖ”
+    // ä»²ä»‹é–¢æ•°
     public static string SHIKI_NO_KEISAN_GetErrorMessage()
     {
         IntPtr pstr;
@@ -60,10 +60,10 @@ static class cssample
             pstr = X64_SHIKI_NO_KEISAN_GetErrorMessage();
         else
             throw new System.Exception("Unexpected Pointer Size.");
-        return System.Runtime.InteropServices.Marshal.PtrToStringAuto(pstr); // CS ‚Ì string ‚É•ÏŠ·
+        return System.Runtime.InteropServices.Marshal.PtrToStringAuto(pstr); // CS ã® string ã«å¤‰æ›
     }
     //------------------------------------------------------------
-    // ƒGƒ‰[ƒƒbƒZ[ƒW‚ðƒNƒŠƒA
+    // ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚¯ãƒªã‚¢
     // SHIKI_NO_KEISAN_ClearErrorMessage
     //------------------------------------------------------------
     // SHIKI_NO_KEISAN_SPEC void __stdcall SHIKI_NO_KEISAN_ClearErrorMessage();
@@ -73,7 +73,7 @@ static class cssample
     [DllImport("x64/neige68.ShikiNoKeisan.dll", EntryPoint="SHIKI_NO_KEISAN_ClearErrorMessage")]
     public static extern void X64_SHIKI_NO_KEISAN_ClearErrorMessage();
     //
-    // ’‡‰îŠÖ”
+    // ä»²ä»‹é–¢æ•°
     public static void SHIKI_NO_KEISAN_ClearErrorMessage()
     {
         if (IntPtr.Size == 4)
@@ -84,7 +84,7 @@ static class cssample
             throw new System.Exception("Unexpected Pointer Size.");
     }
     //============================================================
-    // •]‰¿‚µ‚Ä•\Ž¦
+    // è©•ä¾¡ã—ã¦è¡¨ç¤º
     static void EvalPrint(string Expr)
     {
         SHIKI_NO_KEISAN_ClearErrorMessage();
@@ -97,7 +97,7 @@ static class cssample
         Console.WriteLine(Expr + " = " + Result);
     }
     //============================================================
-    // ƒƒCƒ“
+    // ãƒ¡ã‚¤ãƒ³
     //============================================================
     static void Main()
     {

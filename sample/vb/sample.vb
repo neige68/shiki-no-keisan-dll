@@ -1,4 +1,4 @@
-' <sample.vb>
+' <sample.vb> -*- coding: utf-8 -*-
 '
 ' Project shiki-no-keisan-dll/sample/vb
 
@@ -9,17 +9,17 @@
 
 ' Note: sample
 ' 
-' Compiler: Visual Studio 2019 ˆÈ~‚Ì VBC
+' Compiler: Visual Studio 2019 ä»¥é™ã® VBC
 '
 Module vbsample
     '------------------------------------------------------------
-    ' ŒvŽZŽ®•¶Žš—ñ‚ðŽó‚¯Žæ‚Á‚Ä•]‰¿‚µ‚Ä•Ô‚·
+    ' è¨ˆç®—å¼æ–‡å­—åˆ—ã‚’å—ã‘å–ã£ã¦è©•ä¾¡ã—ã¦è¿”ã™
     ' SHIKI_NO_KEISAN_Eval
     '------------------------------------------------------------
     ' SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_Eval(const wchar_t* mathExpr);
     Declare Unicode Function X86_SHIKI_NO_KEISAN_Eval Lib "x86\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_Eval" (mathExpr As String) As Double
     Declare Unicode Function X64_SHIKI_NO_KEISAN_Eval Lib "x64\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_Eval" (mathExpr As String) As Double
-    ' ’‡‰îŠÖ”
+    ' ä»²ä»‹é–¢æ•°
     Function SHIKI_NO_KEISAN_Eval (mathExpr As String) As Double
         Dim Result As Double
         If IntPtr.Size = 4 Then
@@ -32,13 +32,13 @@ Module vbsample
         Return Result
     End Function
     '------------------------------------------------------------
-    ' ƒGƒ‰[ƒƒbƒZ[ƒW
+    ' ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     ' SHIKI_NO_KEISAN_GetErrorMessage
     '------------------------------------------------------------
     ' SHIKI_NO_KEISAN_SPEC const wchar_t* __stdcall SHIKI_NO_KEISAN_GetErrorMessage();
     Declare Unicode Function X86_SHIKI_NO_KEISAN_GetErrorMessage Lib "x86\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_GetErrorMessage" As IntPtr
     Declare Unicode Function X64_SHIKI_NO_KEISAN_GetErrorMessage Lib "x64\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_GetErrorMessage" As IntPtr
-    ' ’‡‰îŠÖ”
+    ' ä»²ä»‹é–¢æ•°
     Function SHIKI_NO_KEISAN_GetErrorMessage As String
         Dim pstr As IntPtr
         If IntPtr.Size = 4 Then
@@ -48,16 +48,16 @@ Module vbsample
         Else
             Throw New System.Exception("Unexpected Pointer Size.")
         End If
-        Return Runtime.InteropServices.Marshal.PtrToStringAuto(pstr) ' VB ‚Ì String ‚É•ÏŠ·
+        Return Runtime.InteropServices.Marshal.PtrToStringAuto(pstr) ' VB ã® String ã«å¤‰æ›
     End Function
     '------------------------------------------------------------
-    ' ƒGƒ‰[ƒƒbƒZ[ƒW‚ðƒNƒŠƒA
+    ' ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚¯ãƒªã‚¢
     ' SHIKI_NO_KEISAN_ClearErrorMessage
     '------------------------------------------------------------
     ' SHIKI_NO_KEISAN_SPEC void __stdcall SHIKI_NO_KEISAN_ClearErrorMessage();
     Declare Unicode Sub X86_SHIKI_NO_KEISAN_ClearErrorMessage Lib "x86\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_ClearErrorMessage" 
     Declare Unicode Sub X64_SHIKI_NO_KEISAN_ClearErrorMessage Lib "x64\neige68.ShikiNoKeisan.dll" Alias "SHIKI_NO_KEISAN_ClearErrorMessage" 
-    ' ’‡‰îŠÖ”
+    ' ä»²ä»‹é–¢æ•°
     Sub SHIKI_NO_KEISAN_ClearErrorMessage
         If IntPtr.Size = 4 Then
             X86_SHIKI_NO_KEISAN_ClearErrorMessage
@@ -68,7 +68,7 @@ Module vbsample
         End If
     End Sub
     '============================================================
-    ' •]‰¿‚µ‚Ä•\Ž¦
+    ' è©•ä¾¡ã—ã¦è¡¨ç¤º
     Sub EvalPrint(Expr As String)
         SHIKI_NO_KEISAN_ClearErrorMessage
         Dim Result As Double = SHIKI_NO_KEISAN_Eval(Expr)
@@ -80,7 +80,7 @@ Module vbsample
         Console.WriteLine(Expr & " = " & Result)
     End Sub
     '============================================================
-    ' ƒƒCƒ“
+    ' ãƒ¡ã‚¤ãƒ³
     '============================================================
     Sub Main
         EvalPrint("2*2+2/2")

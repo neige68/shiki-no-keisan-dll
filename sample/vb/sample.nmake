@@ -1,4 +1,4 @@
-# <sample.nmake> -*- mode: makefile; coding: cp932-dos -*-
+# <sample.nmake> -*- mode: makefile; coding: utf-8 -*-
 #
 # Project shiki-no-keisan-dll/sample/vb
 
@@ -7,7 +7,7 @@
 # (See accompanying file LICENSE or copy at
 #  https://www.boost.org/LICENSE_1_0.txt)
 
-# Compiler:  Visual Studio 2019 à»ç~ÇÃ VBC
+# Compiler:  Visual Studio 2019 ‰ª•Èôç„ÅÆ VBC
 #
 
 !if !defined(MAKE) || !defined(MAKEDIR)
