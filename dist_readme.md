@@ -65,6 +65,28 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
     
 各ディレクトリの build.bat を実行してください。
 
+## ファイル
+
+* bin/x64/neige68.ShikiNoKeisan.dll - x64用DLL
+
+* bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
+
+* doc/buildin_functions.html - 組込関数ドキュメント
+
+* include/shiki_no_keisan.h - C/C++ ヘッダファイル
+
+* lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
+
+* lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
+
+* sample/cs/ - C#サンプル
+
+* sample/vb/ - VB.NET サンプル
+
+* sample/vc/ - C サンプル
+
+* sample/vcpp/ - C++ サンプル
+
 ## 今後の予定
 
 * 変数対応
