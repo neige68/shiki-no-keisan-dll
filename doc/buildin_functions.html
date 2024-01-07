@@ -1,0 +1,287 @@
+<html><title>組込関数</title><!--*- coding: utf-8-dos -*-->
+<body bgcolor='#C0FFFF'>
+<h1>組込関数</h1>
+<ul>
+<li><a href="#abs">abs</a> - 絶対値
+<li><a href="#acos">acos</a> - 逆余弦
+<li><a href="#asin">asin</a> - 逆正弦
+<li><a href="#atan">atan</a> - 逆正接
+<li><a href="#atan2">atan2</a> - 2引数逆正接
+<li><a href="#ceil">ceil</a> - 天井関数(+∞方向丸め)
+<li><a href="#cos">cos</a> - 余弦
+<li><a href="#exp">exp</a> - 指数
+<li><a href="#floor">floor</a> - 床関数(-∞方向丸め)
+<li><a href="#frandom">frandom</a> - 浮動小数点の一様乱数
+<li><a href="#gamma">gamma</a> - ガンマ関数
+<li><a href="#gammaln">gammaln</a> - ガンマ自然対数
+<li><a href="#ln">ln</a> - 自然対数
+<li><a href="#log">log</a> - 対数
+<li><a href="#log10">log10</a> - 常用対数
+<li><a href="#max">max</a> - 最大
+<li><a href="#min">min</a> - 最小
+<li><a href="#mod">mod</a> - 剰余
+<li><a href="#random">random</a> - 一様乱数
+<li><a href="#round">round</a> - 指定桁四捨五入
+<li><a href="#rounddown">rounddown</a> - 指定桁0方向丸め
+<li><a href="#roundup">roundup</a> - 指定桁0から離れる方向丸め
+<li><a href="#sign">sign</a> - 符号
+<li><a href="#sin">sin</a> - 正弦
+<li><a href="#sqrt">sqrt</a> - 平方根
+<li><a href="#tan">tan</a> - 正接
+<li><a href="#trunc">trunc</a> - 絶対値切り捨て(0方向丸め)
+</ul>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="abs">abs</a></h2>
+<p>絶対値</p>
+<p>
+abs(x) で x の絶対値を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="acos">acos</a></h2>
+<p>逆余弦</p>
+<p>
+acos(x) で x の逆余弦を返す。<br>
+関数値は -π/2 ～ π/2 ラジアンの範囲となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="asin">asin</a></h2>
+<p>逆正弦</p>
+<p>
+asin(x) で x の逆正弦を返す。<br>
+関数値は -π/2 ～ π/2 ラジアンの範囲となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="atan">atan</a></h2>
+<p>逆正接</p>
+<p>
+atan(x) で x の逆正接を返す。<br>
+関数値は 0 ～ π ラジアンの範囲となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="atan2">atan2</a></h2>
+<p>2引数逆正接</p>
+<p>
+atan2(y, x) で x = r cos θ, y = r sin θ となる θ を返す。
+関数値は -π ～ π ラジアンの範囲となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="ceil">ceil</a></h2>
+<p>天井関数(+∞方向丸め)</p>
+<p>
+ceil(x) で x を下回らない最小の整数を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="cos">cos</a></h2>
+<p>余弦</p>
+<p>
+cos(x) で x の余弦を返す。<br>
+x の単位はラジアンとする。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="exp">exp</a></h2>
+<p>指数</p>
+<p>
+exp(x) で e (ネイピア数) の x 乗を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="floor">floor</a></h2>
+<p>床関数(-∞方向丸め)</p>
+<p>
+floor(x) で x を超えない最大の整数を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="frandom">frandom</a></h2>
+<p>浮動小数点の一様乱数</p>
+<p>
+frandom(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。<br>
+x が正のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。<br>
+現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="gamma">gamma</a></h2>
+<p>ガンマ関数</p>
+<p>
+gamma(x) で x のガンマ関数の値を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="gammaln">gammaln</a></h2>
+<p>ガンマ自然対数</p>
+<p>
+gammaln(x) で x のガンマ関数の値の絶対値の自然対数を返す。
+意味としては ln(abs(gamma(x))) に等しいが、オーバフローを回避して計算できる x の範囲が広い。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="ln">ln</a></h2>
+<p>自然対数</p>
+<p>
+ln(x) で x の自然対数(底はネイピア数)を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="log">log</a></h2>
+<p>対数</p>
+<p>
+log(x, b) で b を底とする x の対数を返す。 <br>
+第2引数 b は省略可能でデフォルトの値は 10 である。したがってこのとき log は常用対数となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="log10">log10</a></h2>
+<p>常用対数</p>
+<p>
+log10(x) で x の常用対数(底は 10)を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="max">max</a></h2>
+<p>最大</p>
+<p>
+max(x, ...) で x, ... の最大値を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="min">min</a></h2>
+<p>最小</p>
+<p>
+min(x, ...) で x, ... の最小値を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="mod">mod</a></h2>
+<p>剰余</p>
+<p>
+mod(x, y) で x を y で割った余りを返す。 <br>
+関数値は x と同符号で、絶対値は y 未満となる。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="random">random</a></h2>
+<p>一様乱数</p>
+<p>
+random(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。<br>
+x が正の整数のとき整数 0..x-1 の一様乱数系列のひとつの値を返す。<br>
+x が正の非整数のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。<br>
+現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="round">round</a></h2>
+<p>指定桁四捨五入</p>
+<p>
+round(x, d) で d で指定した桁に x を四捨五入で丸めて返す。<br>
+<br>
+d 自体が小数の時は d を 0 方向に丸める <br>
+d が 0 (省略可能)のとき x を整数に丸める。 <br>
+正のときは小数点以下が d 桁になるように x を丸める。 <br>
+負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="rounddown">rounddown</a></h2>
+<p>指定桁0方向丸め</p>
+<p>
+rounddown(x, d) で d で指定した桁に x を0方向に丸めて返す。<br>
+<br>
+d 自体が小数の時は d を 0 方向に丸める。 <br>
+d が 0 (省略可能)のとき x を整数に丸める。 <br>
+正のときは小数点以下が d 桁になるように x を丸める。 <br>
+負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="roundup">roundup</a></h2>
+<p>指定桁0から離れる方向丸め</p>
+<p>
+roundup(x, d) で d で指定した桁に x を0から離れる方向に丸めて返す。<br>
+<br>
+d 自体が小数の時は d を 0 方向に丸める。 <br>
+d が 0 (省略可能)のとき x を整数に丸める。 <br>
+正のときは小数点以下が d 桁になるように x を丸める。 <br>
+負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="sign">sign</a></h2>
+<p>符号</p>
+<p>
+sign(x) で x が正の時 1、0 のとき 0、負の時 -1 を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="sin">sin</a></h2>
+<p>正弦</p>
+<p>
+sin(x) で x の正弦を返す。<br>
+x の単位はラジアンとする。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="sqrt">sqrt</a></h2>
+<p>平方根</p>
+<p>
+sqrt(x) で x の非負の平方根を返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="tan">tan</a></h2>
+<p>正接</p>
+<p>
+tan(x) で x の正接を返す。<br>
+x の単位はラジアンとする。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<h2><a name="trunc">trunc</a></h2>
+<p>絶対値切り捨て(0方向丸め)</p>
+<p>
+trunc(x) で x の絶対値を切り捨てて返す。
+</p>
+<a href="#">[先頭]</a>
+<a href="#footer">[末尾]</a>
+<hr>
+<a name="footer"></a>
+<address>
+mail: <a href='mailto:shiki-no-keisan-dll@neige.nu'>shiki-no-keisan-dll@neige.nu</a><br>
+Copyright &copy; 2024 neige68<br>
+</address>
+</body>
+</html>

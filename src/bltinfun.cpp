@@ -63,7 +63,9 @@ reg_## name inst_reg_ ## name;
 
 //------------------------------------------------------------
 //
-/// 平方根 sqrt(x)
+/// 平方根
+//
+/// sqrt(x) で x の非負の平方根を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(sqrt, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -77,7 +79,9 @@ REGISTER_BUILT_IN_FUNCTION(sqrt, [] (BuiltInFunctions::Args const& args) -> doub
 //
 
 //
-/// exp(x)
+/// 指数
+//
+/// exp(x) で e (ネイピア数) の x 乗を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(exp, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -86,10 +90,10 @@ REGISTER_BUILT_IN_FUNCTION(exp, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// log(x[, b])
+/// 対数
 //
-/// Excel 互換 \n
-/// b のデフォルト値は 10
+/// log(x, b) で b を底とする x の対数を返す。 \n
+/// 第2引数 b は省略可能でデフォルトの値は 10 である。したがってこのとき log は常用対数となる。
 //
 REGISTER_BUILT_IN_FUNCTION(log, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -100,7 +104,9 @@ REGISTER_BUILT_IN_FUNCTION(log, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// 自然対数 ln(x)
+/// 自然対数
+//
+/// ln(x) で x の自然対数(底はネイピア数)を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(ln, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -109,7 +115,9 @@ REGISTER_BUILT_IN_FUNCTION(ln, [] (BuiltInFunctions::Args const& args) -> double
 });
 
 //
-/// 常用対数 log10(x)
+/// 常用対数
+//
+/// log10(x) で x の常用対数(底は 10)を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(log10, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -123,7 +131,9 @@ REGISTER_BUILT_IN_FUNCTION(log10, [] (BuiltInFunctions::Args const& args) -> dou
 //
 
 //
-/// 符号 sign(x)
+/// 符号
+//
+/// sign(x) で x が正の時 1、0 のとき 0、負の時 -1 を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(sign, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -138,7 +148,9 @@ REGISTER_BUILT_IN_FUNCTION(sign, [] (BuiltInFunctions::Args const& args) -> doub
 });
 
 //
-/// abs(x)
+/// 絶対値
+//
+/// abs(x) で x の絶対値を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(abs, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -147,7 +159,10 @@ REGISTER_BUILT_IN_FUNCTION(abs, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// 剰余 mod(x, y)
+/// 剰余
+//
+/// mod(x, y) で x を y で割った余りを返す。 \n
+/// 関数値は x と同符号で、絶対値は y 未満となる。
 //
 REGISTER_BUILT_IN_FUNCTION(mod, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 2)
@@ -161,7 +176,9 @@ REGISTER_BUILT_IN_FUNCTION(mod, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 
 //
-/// max(x, ...)
+/// 最大
+//
+/// max(x, ...) で x, ... の最大値を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(max, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() < 1)
@@ -174,7 +191,9 @@ REGISTER_BUILT_IN_FUNCTION(max, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// min(x, ...)
+/// 最小
+//
+/// min(x, ...) で x, ... の最小値を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(min, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() < 1)
@@ -192,7 +211,10 @@ REGISTER_BUILT_IN_FUNCTION(min, [] (BuiltInFunctions::Args const& args) -> doubl
 //
 
 //
-/// sin(x)
+/// 正弦
+//
+/// sin(x) で x の正弦を返す。\n
+/// x の単位はラジアンとする。
 //
 REGISTER_BUILT_IN_FUNCTION(sin, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -201,7 +223,10 @@ REGISTER_BUILT_IN_FUNCTION(sin, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// cos(x)
+/// 余弦
+//
+/// cos(x) で x の余弦を返す。\n
+/// x の単位はラジアンとする。
 //
 REGISTER_BUILT_IN_FUNCTION(cos, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -210,7 +235,10 @@ REGISTER_BUILT_IN_FUNCTION(cos, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// tan(x)
+/// 正接
+//
+/// tan(x) で x の正接を返す。\n
+/// x の単位はラジアンとする。
 //
 REGISTER_BUILT_IN_FUNCTION(tan, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -219,7 +247,10 @@ REGISTER_BUILT_IN_FUNCTION(tan, [] (BuiltInFunctions::Args const& args) -> doubl
 });
 
 //
-/// asin(x)
+/// 逆正弦
+//
+/// asin(x) で x の逆正弦を返す。\n
+/// 関数値は -π/2 ～ π/2 ラジアンの範囲となる。
 //
 REGISTER_BUILT_IN_FUNCTION(asin, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -228,7 +259,10 @@ REGISTER_BUILT_IN_FUNCTION(asin, [] (BuiltInFunctions::Args const& args) -> doub
 });
 
 //
-/// acos(x)
+/// 逆余弦
+//
+/// acos(x) で x の逆余弦を返す。\n
+/// 関数値は -π/2 ～ π/2 ラジアンの範囲となる。
 //
 REGISTER_BUILT_IN_FUNCTION(acos, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -237,7 +271,10 @@ REGISTER_BUILT_IN_FUNCTION(acos, [] (BuiltInFunctions::Args const& args) -> doub
 });
 
 //
-/// atan(x)
+/// 逆正接
+//
+/// atan(x) で x の逆正接を返す。\n
+/// 関数値は 0 ～ π ラジアンの範囲となる。
 //
 REGISTER_BUILT_IN_FUNCTION(atan, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -246,7 +283,10 @@ REGISTER_BUILT_IN_FUNCTION(atan, [] (BuiltInFunctions::Args const& args) -> doub
 });
 
 //
-/// atan2(y, x)
+/// 2引数逆正接
+//
+/// atan2(y, x) で x = r cos θ, y = r sin θ となる θ を返す。
+/// 関数値は -π ～ π ラジアンの範囲となる。
 //
 REGISTER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 2)
@@ -260,7 +300,9 @@ REGISTER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> dou
 //
 
 //
-/// 床関数 -∞方向丸め floor(x) 
+/// 床関数(-∞方向丸め)
+//
+/// floor(x) で x を超えない最大の整数を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -282,7 +324,9 @@ REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> dou
 });
 
 //
-/// 天井関数 +∞方向丸め ceil(x)
+/// 天井関数(+∞方向丸め)
+//
+/// ceil(x) で x を下回らない最小の整数を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -304,7 +348,9 @@ REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> doub
 });
 
 //
-/// 0方向丸め trunc(x)
+/// 絶対値切り捨て(0方向丸め)
+//
+/// trunc(x) で x の絶対値を切り捨てて返す。
 //
 REGISTER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -337,13 +383,12 @@ double rounddown(double x, double d = 0)
 }
 
 //
-/// rounddown(x[, d])
+/// 指定桁0方向丸め
 //
-/// Excel 互換 \n
-/// d で指定した桁に x を0方向に丸める。 \n
-//
+/// rounddown(x, d) で d で指定した桁に x を0方向に丸めて返す。\n
+/// \n
 /// d 自体が小数の時は d を 0 方向に丸める。 \n
-/// d が 0 (デフォルト)のとき x を整数に丸める。 \n
+/// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
 //
@@ -372,15 +417,15 @@ double roundup(double x, double d = 0)
 }
 
 //
-/// roundup(x[, d])
+/// 指定桁0から離れる方向丸め
 //
-/// Excel 互換 \n
-/// d で指定した桁に x を0から離れる方向に丸める。 \n
-//
+/// roundup(x, d) で d で指定した桁に x を0から離れる方向に丸めて返す。\n
+/// \n
 /// d 自体が小数の時は d を 0 方向に丸める。 \n
-/// d が 0 (デフォルト)のとき x を整数に丸める。 \n
+/// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+//
 REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
         throw runtime_error(to_utf8(L"関数 roundup は1個か2個の引数が必要です."));
@@ -406,13 +451,12 @@ double round(double x, double d = 0)
 }
 
 //
-/// round(x[, d])
+/// 指定桁四捨五入
 //
-/// Excel 互換 \n
-/// d で指定した桁に x を四捨五入で丸める。 \n
-//
+/// round(x, d) で d で指定した桁に x を四捨五入で丸めて返す。\n
+/// \n
 /// d 自体が小数の時は d を 0 方向に丸める \n
-/// d が 0 (デフォルト)のとき x を整数に丸める。 \n
+/// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
 //
@@ -443,11 +487,14 @@ double random(double x, bool forceFloat = false)
     return uniform_real_distribution<>{0.0, x}(engine);
 }
 
-/// 一様乱数 random([x])
 //
-/// 引数なしおよび x が 0 のとき [0,1) の一様乱数(x が負の時も今はここ)
-/// x が正の整数のとき x 未満の非負整数の一様乱数
-/// x が正の非整数のとき x 未満の正の数の一様乱数
+/// 一様乱数
+//
+/// random(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。\n
+/// x が正の整数のとき整数 0..x-1 の一様乱数系列のひとつの値を返す。\n
+/// x が正の非整数のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。\n
+/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+//
 REGISTER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
     if (args.size() > 1)
@@ -457,10 +504,13 @@ REGISTER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> do
     return random(x);
 });
 
-/// 浮動小数点の一様乱数 frandom([x])
 //
-/// 引数なしおよび x が 0 のとき [0,1) の一様乱数(x が負の時も今はここ)
-/// x が正のとき x 未満の正の数の一様乱数
+/// 浮動小数点の一様乱数
+//
+/// frandom(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。\n
+/// x が正のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。\n
+/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+//
 REGISTER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
     if (args.size() > 1)
@@ -476,7 +526,9 @@ REGISTER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> d
 //
 
 //
-/// gamma(x)
+/// ガンマ関数
+//
+/// gamma(x) で x のガンマ関数の値を返す。
 //
 REGISTER_BUILT_IN_FUNCTION(gamma, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)
@@ -485,7 +537,10 @@ REGISTER_BUILT_IN_FUNCTION(gamma, [] (BuiltInFunctions::Args const& args) -> dou
 });
 
 //
-/// gammaln(x) = ln(abs(gamma(x)))
+/// ガンマ自然対数
+//
+/// gammaln(x) で x のガンマ関数の値の絶対値の自然対数を返す。
+/// 意味としては ln(abs(gamma(x))) に等しいが、オーバフローを回避して計算できる x の範囲が広い。
 //
 REGISTER_BUILT_IN_FUNCTION(gammaln, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1)

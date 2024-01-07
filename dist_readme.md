@@ -1,4 +1,4 @@
-# shiki-no-keisan-dll 式の計算(計算式評価)DLL
+# shiki-no-keisan-dll 式の計算(計算式評価)DLL バイナリ リリース用 ドキュメント
 
 Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 
@@ -39,23 +39,25 @@ Windows 10 以降 (x86, x64)
 
 ## ライセンス
 
-[Boost Software License, Version 1.0](https://www.boost.org/LICENSE_1_0.txt) で公開しています。
-
 バイナリの配布は自由です。
 
-## ビルド
+## ソースコード
 
-CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 の Spirit X3 を使用しています。用意してください。
+ソースコードは [https://github.com/neige68/shiki-no-keisan-dll](https://github.com/neige68/shiki-no-keisan-dll) にあります。
+
+## サンプルコードのビルド
+
+CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 を使用しています。用意してください。
 
 VC14.2 の vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておいてください。
 
 例:
 
     set VC142=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
+    
+build.bat を実行してください。
 
 ## 今後の予定
-
-* バイナリリリース
 
 * 変数対応
 

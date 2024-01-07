@@ -16,6 +16,9 @@ rem
 setlocal
 pushd %~dp0
 rmdir /s /q build
+rmdir /s /q bin
+rmdir /s /q lib
+rmdir /s /q dist
 rmdir /s /q sample\cs\build
 rmdir /s /q sample\vb\build
 rmdir /s /q sample\vc\build
