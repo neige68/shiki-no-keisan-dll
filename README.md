@@ -2,7 +2,9 @@
 
 Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 
-自由に使える x64 用の DLL が無いようなので作成しました。
+四則演算・冪乗・括弧・組込関数を含む計算式の文字列を渡して、計算結果を double(倍精度浮動小数点)値で受け取れます。
+
+自由に使える x64 用の DLL が無いようなので Boost Spirit X3 を利用して作成しました。
 
 C++, C, C#, VB.NET のサンプルを添付しています。
 
@@ -39,19 +41,21 @@ Windows 10 以降 (x86, x64)
 
 ## ライセンス
 
-[Boost Software License, Version 1.0](https://www.boost.org/LICENSE_1_0.txt) で公開しています。
+ソースコードは [Boost Software License, Version 1.0](https://www.boost.org/LICENSE_1_0.txt) に従って公開しています。
 
 バイナリの配布は自由です。
 
 ## ビルド
 
-CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 の Spirit X3 を使用しています。用意してください。
+CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 を使用しています。用意してください。
 
-VC14.2 の vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておいてください。
+Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておいてください。
 
 例:
 
     set VC142=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
+    
+各ディレクトリの build.bat を実行してください。
 
 ## 今後の予定
 
