@@ -38,7 +38,7 @@ message(STATUS "VER_PRODUCTVERSION: ${VER_PRODUCTVERSION}")
 
 # BOOST を探す
 # C: ドライブ以外から探すには 環境変数 CMAKE_PREFIX_PATH の設定が必要
-find_package(Boost 1.81 REQUIRED COMPONENTS program_options)
+find_package(Boost 1.81 REQUIRED COMPONENTS unit_test_framework)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
 
