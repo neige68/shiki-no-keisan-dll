@@ -26,6 +26,8 @@ set @dist=dist\shiki-no-keisan-dll-%@ver%
 if not exist %@dist% mkdir %@dist%
 replace dist_readme.md %@dist% /a
 replace dist_readme.md %@dist% /u
+replace LICENSE %@dist% /a
+replace LICENSE %@dist% /u
 if not exist %@dist%\doc mkdir %@dist%\doc
 replace doc\*.html %@dist%\doc /a
 replace doc\*.html %@dist%\doc /u
