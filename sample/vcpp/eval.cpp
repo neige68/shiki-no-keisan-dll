@@ -15,9 +15,7 @@
 
 #include "shiki_no_keisan.h"
 
-#include <boost/preprocessor/wstringize.hpp> // BOOST_PP_WSTRINGIZE
 #include <boost/program_options.hpp> // boost::program_options
-#include <boost/format.hpp>          // boost::format
 
 #include <cstdlib>              // std::mbstowcs_s
 #include <exception>            // std::exception

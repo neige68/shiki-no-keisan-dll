@@ -15,7 +15,6 @@
 
 #include "shiki_no_keisan.h"
 
-#include <math.h>               // isnan
 #include <stdio.h>              // printf
 
 void EvalPrint(const char* str)
