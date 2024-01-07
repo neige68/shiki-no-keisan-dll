@@ -71,7 +71,7 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 * bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
 
-* doc/buildin_functions.html - 組込関数ドキュメント
+* doc/builtin_functions.html - 組込関数ドキュメント
 
 * include/shiki_no_keisan.h - C/C++ ヘッダファイル
 
