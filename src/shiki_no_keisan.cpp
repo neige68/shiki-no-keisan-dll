@@ -315,6 +315,12 @@ thread_local wstring ErrorMessage;
 /// エラーメッセージ ANSI(MBCS) 版
 thread_local string ErrorMessageA;
 
+/// 計算式文字列を受け取って評価して返す
+//
+/// エラー時は NaN が返される。 \n
+/// C/C++ では isnan マクロ/インラインテンプレート関数で判定できる。 \n
+/// VB.NET, C# では Double.IsNaN メソッドで判定できる。 \n
+/// NaN が返された場合でも、エラーメッセージは空の場合がある。
 double __stdcall SHIKI_NO_KEISAN_Eval(const wchar_t* mathExpr)
 {
     try {
@@ -326,27 +332,41 @@ double __stdcall SHIKI_NO_KEISAN_Eval(const wchar_t* mathExpr)
     }
 }
 
+/// 計算式文字列を受け取って評価して返す ANSI(MBCS) 版
 double __stdcall SHIKI_NO_KEISAN_EvalA(const char* mathExpr)
 {
     return SHIKI_NO_KEISAN_Eval(to_wide(mathExpr).c_str());
 }
 
+/// エラーメッセージをクリア
 void __stdcall SHIKI_NO_KEISAN_ClearErrorMessage()
 {
     ErrorMessage.clear();
 }
 
+/// エラーメッセージへの参照を返す
+//
+/// 静的なバッファ上のエラーメッセージのポインタを返す。 \n
+/// 空文字列のこともある。 \n
+/// VB.NET, C# では IntPtr で受け取り、
+/// Runtime.InteropServices.Marshal.PtrToStringAuto で String に変換する。
 const wchar_t* __stdcall SHIKI_NO_KEISAN_GetErrorMessage()
 {
     return ErrorMessage.c_str();
 }
 
+/// エラーメッセージへの参照を返す ANSI(MBCS) 版
 const char* __stdcall SHIKI_NO_KEISAN_GetErrorMessageA()
 {
     ErrorMessageA = to_acp(ErrorMessage);
     return ErrorMessageA.c_str();
 }
 
+/// 吸収相対誤差設定
+//
+/// 0 付近以外で吸収される誤差を設定します
+//
+/// \result 設定前の値
 double __stdcall SHIKI_NO_KEISAN_SetRelativeErrorThreshold(double e)
 {
     double result = BuiltInFunctions::Instance().RelativeErrorThreshold();
@@ -354,11 +374,19 @@ double __stdcall SHIKI_NO_KEISAN_SetRelativeErrorThreshold(double e)
     return result;
 }
 
+/// 吸収相対誤差取得
+//
+/// 0 付近以外で吸収される誤差を取得します
 double __stdcall SHIKI_NO_KEISAN_GetRelativeErrorThreshold()
 {
     return BuiltInFunctions::Instance().RelativeErrorThreshold();
 }
 
+/// 吸収絶対誤差設定
+//
+/// 0 付近で吸収される誤差を設定します
+//
+/// \result 設定前の値
 double __stdcall SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(double e)
 {
     double result = BuiltInFunctions::Instance().AbsoluteErrorThreshold();
@@ -366,6 +394,9 @@ double __stdcall SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(double e)
     return result;
 }
 
+/// 吸収絶対誤差取得
+//
+/// 0 付近で吸収される誤差を取得します
 double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold()
 {
     return BuiltInFunctions::Instance().AbsoluteErrorThreshold();
