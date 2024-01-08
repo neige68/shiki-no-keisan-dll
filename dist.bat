@@ -36,9 +36,13 @@ replace doc\*.html %@dist%\doc /u
 if not exist %@dist%\bin\x64 mkdir %@dist%\bin\x64
 replace bin\x64\*.dll %@dist%\bin\x64 /a
 replace bin\x64\*.dll %@dist%\bin\x64 /u
+replace sample\vcpp\build64\Release\eval.exe %@dist%\bin\x64 /a
+replace sample\vcpp\build64\Release\eval.exe %@dist%\bin\x64 /u
 if not exist %@dist%\bin\x86 mkdir %@dist%\bin\x86
 replace bin\x86\*.dll %@dist%\bin\x86 /a
 replace bin\x86\*.dll %@dist%\bin\x86 /u
+replace sample\vcpp\build\Release\eval.exe %@dist%\bin\x86 /a
+replace sample\vcpp\build\Release\eval.exe %@dist%\bin\x86 /u
 if not exist %@dist%\lib\x64 mkdir %@dist%\lib\x64
 replace lib\x64\*.lib %@dist%\lib\x64 /a
 replace lib\x64\*.lib %@dist%\lib\x64 /u

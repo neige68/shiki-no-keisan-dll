@@ -87,6 +87,12 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
   * lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
 
   * lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
+  
+* ビルド済みサンプル実行モジュール
+
+  * bin/x64/eval.exe - x64用 C++ サンプル実行モジュール
+
+  * bin/x86/eval.exe - x86用 C++ サンプル実行モジュール
 
 ## 今後の予定
 

@@ -39,7 +39,7 @@ wstring to_wide(const string& str)
 /// バージョン出力
 void version()
 {
-    wcout << L"Eval";
+    wcout << L"shiki-no-keisan-dll C++ Sample: Eval";
 #if defined(_WIN64)
     wcout << L" x64";
 #else        
@@ -50,7 +50,8 @@ void version()
 #else
     wcout << L" Debug";
 #endif
-    wcout << L" Version";
+    wcout << L" Version 0.00" << endl;
+    wcout << L"Copyright (C) 2024 neige68" << endl;
 }
 
 /// ヘルプメッセージ出力
