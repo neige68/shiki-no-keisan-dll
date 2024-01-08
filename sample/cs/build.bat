@@ -38,8 +38,5 @@ if "%INCLUDE%"=="" call "%VC%\vcvarsall.bat" x86
 
 if not exist %@build% mkdir %@build%
 nmake /f sample.nmake
-echo build.bat: ************************************************************
-echo build.bat: ** AnyCPU generated
-echo build.bat: ************************************************************
 
 rem end of build.bat
