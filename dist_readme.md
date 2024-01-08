@@ -54,8 +54,7 @@ Windows 10 以降 (x86, x64)
 Visual Studio 2019 (VC14.2) を使用しています。
 C, C++ サンプルでは CMake 3.24 も使用しています。
 C++ サンプルでは Boost 1.81 も使用しています。
-
-以上を用意してください。
+必要なものを用意してください。
 
 Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておいてください。
 
@@ -67,17 +66,9 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 ## ファイル
 
-* bin/x64/neige68.ShikiNoKeisan.dll - x64用DLL
-
-* bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
-
 * doc/builtin_functions.html - 組込関数ドキュメント
 
 * include/shiki_no_keisan.h - C/C++ ヘッダファイル
-
-* lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
-
-* lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
 
 * sample/cs/ - C#サンプル
 
@@ -86,6 +77,16 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 * sample/vc/ - C サンプル
 
 * sample/vcpp/ - C++ サンプル
+
+* VCランタイム ライブラリ静的リンク版DLL/LIB
+
+  * bin/x64/neige68.ShikiNoKeisan.dll - x64用DLL
+
+  * bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
+
+  * lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
+
+  * lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
 
 ## 今後の予定
 

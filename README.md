@@ -59,17 +59,9 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 ## ファイル
 
-* bin/x64/neige68.ShikiNoKeisan.dll - x64用DLL
-
-* bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
-
 * doc/builtin_functions.html - 組込関数ドキュメント
 
 * include/shiki_no_keisan.h - C/C++ ヘッダファイル
-
-* lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
-
-* lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
 
 * sample/cs/ - C#サンプル
 
@@ -81,9 +73,27 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 * src/ - ソース
 
-## 今後の予定
+* VCランタイム ライブラリ静的リンク版DLL/LIB(ビルド要, バイナリ リリースには同梱)
 
-* バイナリリリース
+  * bin/x64/neige68.ShikiNoKeisan.dll - x64用DLL
+
+  * bin/x86/neige68.ShikiNoKeisan.dll - x86用DLL
+
+  * lib/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
+
+  * lib/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
+  
+* VCランタイム ライブラリ動的リンク版DLL/LIB(ビルド要)
+
+  * bin/rd/x64/neige68.ShikiNoKeisan.dll - x64用DLL
+
+  * bin/rd/x86/neige68.ShikiNoKeisan.dll - x86用DLL
+
+  * lib/rd/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
+
+  * lib/rd/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
+
+## 今後の予定
 
 * 変数対応
 
