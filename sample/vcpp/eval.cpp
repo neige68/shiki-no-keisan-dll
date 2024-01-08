@@ -122,6 +122,7 @@ int wmain(int argc, wchar_t** argv)
             }
         }
         else {
+            wcout << L"計算式を入力してください。終わるときは . を入力してください。" << endl;
             wstring str;
             while (getline(wcin, str)) {
                 if (str.empty() || str == L".") break;
