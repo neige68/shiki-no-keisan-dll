@@ -45,6 +45,11 @@ Windows 10 以降 (x86, x64)
 
 バイナリの配布は自由です。
 
+## バイナリ リリース
+
+C++, C, C#, VB.NET のサンプル コード、ビルド済みの DLL、インポート ライブラリを含むバイナリ リリースが
+[Releases](https://github.com/neige68/shiki-no-keisan-dll/releases) にあります。
+
 ## ビルド
 
 CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 を使用しています。用意してください。
