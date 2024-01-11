@@ -66,7 +66,7 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 ## ファイル
 
-* doc/builtin_functions.html - 組込関数ドキュメント
+* docs/builtin_functions.html - 組込関数ドキュメント
 
 * include/shiki_no_keisan.h - C/C++ ヘッダファイル
 
