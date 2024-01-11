@@ -1,4 +1,4 @@
-# shiki-no-keisan-dll 式の計算(計算式評価)DLL
+# 式の計算(計算式評価)DLL
 
 Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 
@@ -15,7 +15,7 @@ C# と VB.NET のサンプルでは、プラットホームに AnyCPU を指定�
 
 Arm にはまだ対応していません。
 
-* 組込関数 [builtin_functions.html]
+* [組込関数](builtin_functions.html)
 
 ## C#サンプルの出力
 
