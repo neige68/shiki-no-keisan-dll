@@ -52,12 +52,12 @@ Windows 10 以降 (x86, x64) 日本語版
 ## バイナリ リリース
 
 C++, C, C#, VB.NET のサンプル コード、ビルド済みの DLL、インポート ライブラリを含むバイナリ リリースが
-[Releases](https://github.com/neige68/shiki-no-keisan-dll/releases) にあります。
+https://github.com/neige68/shiki-no-keisan-dll/releases にあります。
 ソースからビルドしたい場合以外はこちらを使用してください。
 
 ## ソースコードの所在
 
-ソースコードは [https://github.com/neige68/shiki-no-keisan-dll](https://github.com/neige68/shiki-no-keisan-dll) にあります。
+ソースコードは https://github.com/neige68/shiki-no-keisan-dll/ にあります。
 
 ## 今後の予定
 
