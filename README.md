@@ -114,10 +114,3 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 * [github issues](https://github.com/neige68/shiki-no-keisan-dll/issues)
 
 * mail: shiki-no-keisan-dll@neige@ の2つめの@を .nu で置換してください
-
-## 検索用ワード
-
-    数式評価 数式変換 数式計算 数式の文字列を変換 ダイナミック リンク ライブラリ x64対応 64ビット対応 64ビットOS対応 商利用可能
-    Evaluate Math Expression Basic CSharp Dynamic Link Library x64 Supported 64bit Operating System Supported
-    Commercial use available
-
