@@ -66,7 +66,14 @@ if (${CMAKE_GENERATOR_PLATFORM} STREQUAL "x64")
     set(CMAKE_RC_FLAGS "${CMAKE_RC_FLAGS} /D_WIN64")
 endif ()
 
-add_compile_definitions(PROJECT_VERSION=${PROJECT_VERSION})
+# PROJECT_VERSION
+add_compile_definitions(PROJECT_VERSION="${PROJECT_VERSION}")
+# STATIC_RUNTIME_LIBRARY
+if ($ENV{USE_STATIC_RUNTIME_LIBRARY})
+    add_compile_definitions(CONFIG_USE_STATIC_RUNTIME_LIBRARY)
+endif ()
+add_compile_definitions(CONFIG_COMPILER_VERSION="${CMAKE_CXX_COMPILER_VERSION}")
+add_compile_definitions(CONFIG_CMAKE_VERSION_STR="${CMAKE_VERSION}")
 
 include_directories(../include)
 

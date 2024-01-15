@@ -105,6 +105,11 @@ SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold(
 
 //------------------------------------------------------------
 
+/// 識別用メッセージ(ANSI)
+SHIKI_NO_KEISAN_SPEC const char* __stdcall SHIKI_NO_KEISAN_GetIdentMessageA();
+
+//------------------------------------------------------------
+
 #ifdef __cplusplus
 } // extern
 #endif

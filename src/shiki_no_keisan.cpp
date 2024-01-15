@@ -402,6 +402,72 @@ double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold()
     return BuiltInFunctions::Instance().AbsoluteErrorThreshold();
 }
 
+/// 識別用メッセージ(ANSI) 保存静的バッファ
+thread_local string IdentMessageA;
+
+/// 識別用メッセージ(ANSI)
+const char* __stdcall SHIKI_NO_KEISAN_GetIdentMessageA()
+{
+    ostringstream os;
+    //
+#ifdef PROJECT_VERSION
+    static const char projectVersion[] = "$ProjectVersion: " PROJECT_VERSION " $";
+    os << projectVersion << endl;
+#endif
+    //
+#ifdef CONFIG_USE_STATIC_RUNTIME_LIBRARY
+    static const char runtimeLibrary[] = "$RuntimeLibrary: Static $";
+#else    
+    static const char runtimeLibrary[] = "$RuntimeLibrary: Dynamic $";
+#endif    
+    os << runtimeLibrary << endl;
+    //
+#if defined(CONFIG_CMAKE_VERSION_STR)
+    static const char identCmakeVersion[] = "$CmakeVersion: " CONFIG_CMAKE_VERSION_STR " $";
+    os << identCmakeVersion << endl;
+#endif
+    //
+#if defined(CONFIG_COMPILER_VERSION)
+    static const char identCmakeCompilerVersion[] = "$CmakeCompilerVersion: " CONFIG_COMPILER_VERSION " $";
+    os << identCmakeCompilerVersion << endl;
+#endif
+//        
+#if defined(_MSC_FULL_VER)
+    static const char identCompilerVersion[] = "$CompilerVersion: " BOOST_PP_STRINGIZE(_MSC_FULL_VER) " (_MSC_FULL_VER) $";
+    os << identCompilerVersion << endl;
+#endif
+    //
+#if defined(_MSVC_LANG)
+    static const char identCppVersion[] = "$CppVersion: " BOOST_PP_STRINGIZE(_MSVC_LANG) " (_MSVC_LANG) $";
+    os << identCppVersion << endl;
+#endif
+    //
+#if defined(BOOST_VERSION)
+    static const char identBoostVersion[] = "$BoostVersion: " BOOST_PP_STRINGIZE(BOOST_VERSION) " $";
+    os << identBoostVersion << endl;
+#endif
+    //
+#if defined(_M_X64)
+    static const char identArch[] = "$Arch: x64 $";
+#elif defined(_M_IX86)
+    static const char identArch[] = "$Arch: x86 $";
+#elif defined(_M_ARM64)
+    static const char identArch[] = "$Arch: arm64 $";
+#elif defined(_M_ARM)
+    static const char identArch[] = "$Arch: arm $";
+#else    
+    static const char identArch[] = "$Arch: otherwise $";
+#endif
+    os << identArch << endl;
+    //
+#ifndef NDEBUG
+    static const char identDebug[] = "$Debug: true $";
+    os << identDebug << endl;
+#endif
+    IdentMessageA = os.str();
+    return IdentMessageA.c_str();
+}
+
 //------------------------------------------------------------
 
 // end of <shiki_no_keisan.cpp>
