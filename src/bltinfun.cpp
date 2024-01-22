@@ -436,6 +436,8 @@ REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> d
 });
 
 /// round の実装
+//
+/// 0.5 の丸めは std::round と同様に、0 から離れる方向とする。
 double myround(double x, double d = 0)
 {
     const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
@@ -458,7 +460,8 @@ double myround(double x, double d = 0)
 /// d 自体が小数の時は d を 0 方向に丸める \n
 /// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
-///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。\n
+/// 0.5 の丸めは C++ の標準関数 std::round と同様に、0 から離れる方向とする。
 //
 REGISTER_BUILT_IN_FUNCTION(round, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
