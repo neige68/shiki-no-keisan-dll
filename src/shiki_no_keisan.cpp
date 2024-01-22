@@ -367,19 +367,19 @@ const char* __stdcall SHIKI_NO_KEISAN_GetErrorMessageA()
 /// 0 付近以外で吸収される誤差を設定します
 //
 /// \result 設定前の値
-double __stdcall SHIKI_NO_KEISAN_SetRelativeErrorThreshold(double e)
+double __stdcall SHIKI_NO_KEISAN_SetRelativeToleranceAtTruncating(double e)
 {
-    double result = BuiltInFunctions::Instance().RelativeErrorThreshold();
-    BuiltInFunctions::Instance().SetRelativeErrorThreshold(e);
+    double result = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
+    BuiltInFunctions::Instance().SetRelativeToleranceAtTruncating(e);
     return result;
 }
 
 /// 吸収相対誤差取得
 //
 /// 0 付近以外で吸収される誤差を取得します
-double __stdcall SHIKI_NO_KEISAN_GetRelativeErrorThreshold()
+double __stdcall SHIKI_NO_KEISAN_GetRelativeToleranceAtTruncating()
 {
-    return BuiltInFunctions::Instance().RelativeErrorThreshold();
+    return BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
 }
 
 /// 吸収絶対誤差設定
@@ -387,19 +387,19 @@ double __stdcall SHIKI_NO_KEISAN_GetRelativeErrorThreshold()
 /// 0 付近で吸収される誤差を設定します
 //
 /// \result 設定前の値
-double __stdcall SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(double e)
+double __stdcall SHIKI_NO_KEISAN_SetAbsoluteToleranceAtTruncating(double e)
 {
-    double result = BuiltInFunctions::Instance().AbsoluteErrorThreshold();
-    BuiltInFunctions::Instance().SetAbsoluteErrorThreshold(e);
+    double result = BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating();
+    BuiltInFunctions::Instance().SetAbsoluteToleranceAtTruncating(e);
     return result;
 }
 
 /// 吸収絶対誤差取得
 //
 /// 0 付近で吸収される誤差を取得します
-double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold()
+double __stdcall SHIKI_NO_KEISAN_GetAbsoluteToleranceAtTruncating()
 {
-    return BuiltInFunctions::Instance().AbsoluteErrorThreshold();
+    return BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating();
 }
 
 /// 識別用メッセージ(ANSI) 保存静的バッファ

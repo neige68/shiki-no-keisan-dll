@@ -75,33 +75,33 @@ SHIKI_NO_KEISAN_SPEC const char* __stdcall SHIKI_NO_KEISAN_GetErrorMessageA();
 
 //------------------------------------------------------------
 //
-/// 吸収相対誤差設定
+/// 切捨時相対許容誤差設定
 //
 /// 0 付近以外で吸収される誤差を設定します
 //
 /// \result 設定前の値
-SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_SetRelativeErrorThreshold(double e);
+SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_SetRelativeToleranceAtTruncating(double e);
 
-/// 吸収相対誤差取得
+/// 切捨時相対許容誤差取得
 //
 /// 0 付近以外で吸収される誤差を取得します
 //
-SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_GetRelativeErrorThreshold();
+SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_GetRelativeToleranceAtTruncating();
 
 //------------------------------------------------------------
 //
-/// 吸収絶対誤差設定
+/// 切捨時絶対許容誤差設定
 //
 /// 0 付近で吸収される誤差を設定します
 //
 /// \result 設定前の値
-SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(double e);
+SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_SetAbsoluteToleranceAtTruncating(double e);
 
-/// 吸収絶対誤差取得
+/// 切捨時絶対許容誤差取得
 //
 /// 0 付近で吸収される誤差を取得します
 //
-SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold();
+SHIKI_NO_KEISAN_SPEC double __stdcall SHIKI_NO_KEISAN_GetAbsoluteToleranceAtTruncating();
 
 //------------------------------------------------------------
 

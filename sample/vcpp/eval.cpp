@@ -94,8 +94,8 @@ int wmain(int argc, wchar_t** argv)
             ("help,H", "ヘルプ")
             ("version,V", "バージョン表示")
             ("precision,P", po::wvalue<int>()->default_value(6), "出力精度")
-            ("relative-error,R", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetRelativeErrorThreshold()), "吸収相対誤差")
-            ("absolute-error,A", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetAbsoluteErrorThreshold()), "吸収絶対誤差")
+            ("relative-tolerance,R", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetRelativeToleranceAtTruncating()), "切捨時相対許容誤差")
+            ("absolute-tolerance,A", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetAbsoluteToleranceAtTruncating()), "切捨時絶対許容誤差")
             ;
         po::options_description opt("オプション");
         opt.add(visible).add(hidden);
@@ -112,10 +112,10 @@ int wmain(int argc, wchar_t** argv)
         }
         if (vm.count("precision"))
             wcout << setprecision(vm["precision"].as<int>());
-        if (vm.count("relative-error"))
-            SHIKI_NO_KEISAN_SetRelativeErrorThreshold(vm["relative-error"].as<double>());
-        if (vm.count("absolute-error"))
-            SHIKI_NO_KEISAN_SetAbsoluteErrorThreshold(vm["absolute-error"].as<double>());
+        if (vm.count("relative-tolerance"))
+            SHIKI_NO_KEISAN_SetRelativeToleranceAtTruncating(vm["relative-tolerance"].as<double>());
+        if (vm.count("absolute-tolerance"))
+            SHIKI_NO_KEISAN_SetAbsoluteToleranceAtTruncating(vm["absolute-tolerance"].as<double>());
         //
         if (vm.count("input-text")) {
             for (const auto& str : vm["input-text"].as<vector<wstring>>()) {

@@ -306,7 +306,7 @@ REGISTER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> dou
 //
 REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
-        const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+        const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
         auto x = args[0];
         if (x > 0.5) {
             if (x * ret < 0.5)
@@ -318,7 +318,7 @@ REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> dou
                 x *= 1 - ret;
             return floor(x);
         }
-        return floor(x + BuiltInFunctions::Instance().AbsoluteErrorThreshold());
+        return floor(x + BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating());
     }
     throw runtime_error(to_utf8(L"関数 floor は1個の引数が必要です."));
 });
@@ -330,7 +330,7 @@ REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> dou
 //
 REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
-        const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+        const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
         auto x = args[0];
         if (x > 0.5) {
             if (x * ret < 0.5)
@@ -342,7 +342,7 @@ REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> doub
                 x *= 1 + ret;
             return ceil(x);
         }
-        return ceil(x - BuiltInFunctions::Instance().AbsoluteErrorThreshold());
+        return ceil(x - BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating());
     }
     throw runtime_error(to_utf8(L"関数 ceil は1個の引数が必要です."));
 });
@@ -354,7 +354,7 @@ REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> doub
 //
 REGISTER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
-        const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+        const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
         auto x = args[0];
         const auto ax = fabs(x);
         if (ax > 0.5) {
@@ -370,7 +370,7 @@ REGISTER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> dou
 /// rounddown の実装
 double rounddown(double x, double d = 0)
 {
-    const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+    const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
     if (d != 0)
         e = pow(10, rounddown(d));
@@ -404,7 +404,7 @@ REGISTER_BUILT_IN_FUNCTION(rounddown, [] (BuiltInFunctions::Args const& args) ->
 /// roundup の実装
 double roundup(double x, double d = 0)
 {
-    const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+    const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
     if (d != 0)
         e = pow(10, rounddown(d));
@@ -438,7 +438,7 @@ REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> d
 /// round の実装
 double round(double x, double d = 0)
 {
-    const auto ret = BuiltInFunctions::Instance().RelativeErrorThreshold();
+    const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
     if (d != 0)
         e = pow(10, rounddown(d));
@@ -479,10 +479,10 @@ double random(double x, bool forceFloat = false)
 {
     static random_device seed_gen{};
     static default_random_engine engine{seed_gen()};
-    if (x < BuiltInFunctions::Instance().AbsoluteErrorThreshold()) // 0 とみなす
+    if (x < BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating()) // 0 とみなす
         return uniform_real_distribution<>{0.0, 1.0}(engine);
     int n = static_cast<int>(round(x, 0));
-    if (!forceFloat && fabs(x - n) < n * BuiltInFunctions::Instance().RelativeErrorThreshold()) // 整数
+    if (!forceFloat && fabs(x - n) < n * BuiltInFunctions::Instance().RelativeToleranceAtTruncating()) // 整数
         return uniform_int_distribution<>{0, n-1}(engine);
     return uniform_real_distribution<>{0.0, x}(engine);
 }

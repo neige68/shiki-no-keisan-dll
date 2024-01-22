@@ -38,7 +38,7 @@ public:
 
     // *** singleton ***
 private:
-    BuiltInFunctions() : RelativeErrorThreshold_(1e-15), AbsoluteErrorThreshold_(1e-15) {}
+    BuiltInFunctions() : RelativeToleranceAtTruncating_(1e-15), AbsoluteToleranceAtTruncating_(1e-15) {}
 public:
     /// シングルトン参照
     static BuiltInFunctions& Instance();
@@ -46,14 +46,14 @@ public:
 
     // *** functions ***
 public:
-    /// 相対誤差吸収のための閾値の取得
-    double RelativeErrorThreshold() const { return RelativeErrorThreshold_; }
-    /// 相対誤差吸収のための閾値の設定
-    double SetRelativeErrorThreshold(double t) { std::swap(RelativeErrorThreshold_, t); return t; }
-    /// 絶対誤差吸収のための閾値の取得
-    double AbsoluteErrorThreshold() const { return AbsoluteErrorThreshold_; }
-    /// 絶対誤差吸収のための閾値の設定
-    double SetAbsoluteErrorThreshold(double t) { std::swap(AbsoluteErrorThreshold_, t); return t; }
+    /// 切捨時相対許容誤差の取得
+    double RelativeToleranceAtTruncating() const { return RelativeToleranceAtTruncating_; }
+    /// 切捨時相対許容誤差の設定
+    double SetRelativeToleranceAtTruncating(double t) { std::swap(RelativeToleranceAtTruncating_, t); return t; }
+    /// 切捨時絶対許容誤差の取得
+    double AbsoluteToleranceAtTruncating() const { return AbsoluteToleranceAtTruncating_; }
+    /// 切捨時絶対許容誤差の設定
+    double SetAbsoluteToleranceAtTruncating(double t) { std::swap(AbsoluteToleranceAtTruncating_, t); return t; }
     /// 組込関数追加
     void Add(std::wstring const& name, FunctionType fun)
         { FunctionsMap.insert(make_pair(name, fun)); }
@@ -65,10 +65,10 @@ public:
 
     // *** data ***
 private:
-    /// 相対誤差吸収のための閾値
-    double RelativeErrorThreshold_;
-    /// 絶対誤差吸収のための閾値
-    double AbsoluteErrorThreshold_;
+    /// 切捨時相対許容誤差
+    double RelativeToleranceAtTruncating_;
+    /// 切捨時絶対許容誤差
+    double AbsoluteToleranceAtTruncating_;
     /// 組み込み関数名前から関数へのマップ
     std::map<std::wstring, FunctionType> FunctionsMap;
     
