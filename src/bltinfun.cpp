@@ -436,7 +436,7 @@ REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> d
 });
 
 /// round の実装
-double round(double x, double d = 0)
+double myround(double x, double d = 0)
 {
     const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
@@ -466,7 +466,7 @@ REGISTER_BUILT_IN_FUNCTION(round, [] (BuiltInFunctions::Args const& args) -> dou
     int d = 0;
     if (args.size() == 2)
         d = static_cast<int>(args[1]);
-    return round(args[0], d);
+    return myround(args[0], d);
 });
 
 //------------------------------------------------------------
@@ -481,7 +481,7 @@ double random(double x, bool forceFloat = false)
     static default_random_engine engine{seed_gen()};
     if (x < BuiltInFunctions::Instance().AbsoluteToleranceAtTruncating()) // 0 とみなす
         return uniform_real_distribution<>{0.0, 1.0}(engine);
-    int n = static_cast<int>(round(x, 0));
+    int n = static_cast<int>(myround(x, 0));
     if (!forceFloat && fabs(x - n) < n * BuiltInFunctions::Instance().RelativeToleranceAtTruncating()) // 整数
         return uniform_int_distribution<>{0, n-1}(engine);
     return uniform_real_distribution<>{0.0, x}(engine);
