@@ -59,7 +59,7 @@ Windows 10 以降 (x86, x64) 日本語版
 C++, C, C#, VB.NET のサンプル コード、ビルド済みの DLL、インポート ライブラリを含むバイナリ リリースがあります。
 ソースからビルドしたい場合以外はこちらを使用してください。
 
-* [最新 Ver.0.01](https://github.com/neige68/shiki-no-keisan-dll/releases/download/v0.1/shiki-no-keisan-dll-0.01.zip)
+* [最新 Ver.0.02](https://github.com/neige68/shiki-no-keisan-dll/releases/download/v0.2/shiki-no-keisan-dll-0.02.zip)
 * [リリース一覧](https://github.com/neige68/shiki-no-keisan-dll/releases) 
 
 ## ソースコードの所在
