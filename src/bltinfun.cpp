@@ -302,7 +302,8 @@ REGISTER_BUILT_IN_FUNCTION(atan2, [] (BuiltInFunctions::Args const& args) -> dou
 //
 /// 床関数(-∞方向丸め)
 //
-/// floor(x) で x を超えない最大の整数を返す。
+/// floor(x) で x を超えない最大の整数を返す。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -326,7 +327,8 @@ REGISTER_BUILT_IN_FUNCTION(floor, [] (BuiltInFunctions::Args const& args) -> dou
 //
 /// 天井関数(+∞方向丸め)
 //
-/// ceil(x) で x を下回らない最小の整数を返す。
+/// ceil(x) で x を下回らない最小の整数を返す。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -350,7 +352,8 @@ REGISTER_BUILT_IN_FUNCTION(ceil, [] (BuiltInFunctions::Args const& args) -> doub
 //
 /// 絶対値切り捨て(0方向丸め)
 //
-/// trunc(x) で x の絶対値を切り捨てて返す。
+/// trunc(x) で x の絶対値を切り捨てて返す。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(trunc, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() == 1) {
@@ -390,7 +393,8 @@ double rounddown(double x, double d = 0)
 /// d 自体が小数の時は d を 0 方向に丸める。 \n
 /// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
-///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(rounddown, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
@@ -424,7 +428,8 @@ double roundup(double x, double d = 0)
 /// d 自体が小数の時は d を 0 方向に丸める。 \n
 /// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
-///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。
+///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(roundup, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
@@ -461,7 +466,8 @@ double myround(double x, double d = 0)
 /// d が 0 (省略可能)のとき x を整数に丸める。 \n
 ///      正のときは小数点以下が d 桁になるように x を丸める。 \n
 ///      負のときは整数で下から d の絶対値分の桁数が 0 になるように x を丸める。\n
-/// 0.5 の丸めは C++ の標準関数 std::round と同様に、0 から離れる方向とする。
+/// 0.5 の丸めは C++ の標準関数 std::round と同様に、0 から離れる方向とする。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(round, [] (BuiltInFunctions::Args const& args) -> double {
     if (args.size() != 1 && args.size() != 2)
@@ -496,7 +502,8 @@ double random(double x, bool forceFloat = false)
 /// random(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。\n
 /// x が正の整数のとき整数 0..x-1 の一様乱数系列のひとつの値を返す。\n
 /// x が正の非整数のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。\n
-/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
@@ -512,7 +519,8 @@ REGISTER_BUILT_IN_FUNCTION(random, [] (BuiltInFunctions::Args const& args) -> do
 //
 /// frandom(x) で、x が 0 のとき(省略可能) 区間 [0,1) の一様乱数系列のひとつの値を返す。\n
 /// x が正のとき 区間 [0,x) の一様乱数系列のひとつの値を返す。\n
-/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。
+/// 現在 x が負の時は 0 と同じ扱いになっているが変更の可能性がある。\n
+/// この関数では別途指定する誤差の吸収を行う。
 //
 REGISTER_BUILT_IN_FUNCTION(frandom, [] (BuiltInFunctions::Args const& args) -> double {
     double x = 0;
