@@ -18,6 +18,9 @@ Arm にはまだ対応していません。
 * [組込関数](builtin_functions.html)
 
 floor, round などの関数では別途指定の許容誤差の吸収を行っています。
+[include/shiki_no_keisan.h](https://github.com/neige68/shiki-no-keisan-dll/blob/main/include/shiki_no_keisan.h)
+をご覧ください。
+初期値は 1e-15 になっています。
 
 ## C#サンプルの出力
 
