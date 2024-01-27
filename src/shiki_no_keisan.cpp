@@ -114,6 +114,13 @@ struct assign
     expression expr;
 };
 
+/// 複式
+struct multiexpr
+{
+    assign first;
+    std::list<assign> rest;
+};
+
 /// 関数呼び出し
 struct function_call
 {
@@ -141,6 +148,10 @@ BOOST_FUSION_ADAPT_STRUCT(ast::expression,
 
 BOOST_FUSION_ADAPT_STRUCT(ast::assign,
     variables, expr
+)
+
+BOOST_FUSION_ADAPT_STRUCT(ast::multiexpr,
+    first, rest
 )
 
 BOOST_FUSION_ADAPT_STRUCT(ast::function_call,
@@ -217,6 +228,13 @@ struct eval {
                 variables[symbol_to_name(v)] = result;
             return result;
         }
+    double operator()(multiexpr const& x) const
+        {
+            double result{(*this)(x.first)};
+            for (auto const& v : x.rest)
+                result = (*this)(v);
+            return result;
+        }
     double operator()(function_call const& x) const
         {
             std::wstring fun_name = symbol_to_name(x.fun_name);
@@ -255,6 +273,7 @@ using x3::standard_wide::lit;
 using x3::standard_wide::alpha;
 using x3::standard_wide::alnum;
 
+x3::rule<class multiexpr, ast::multiexpr> const multiexpr("複式");
 x3::rule<class assignexpr, ast::assign> const assignexpr("代入式");
 x3::rule<class expression, ast::expression> const expression("式");
 x3::rule<class term, ast::expression> const term("項");
@@ -263,6 +282,11 @@ x3::rule<class factor2, ast::exp_operation> const factor2("因子2");
 x3::rule<class prim, ast::operand> const prim("原始");
 x3::rule<class function_call, ast::function_call> const function_call("関数呼び出し");
 x3::rule<class symbol, ast::symbol> const symbol("シンボル");
+
+auto const multiexpr_def =
+    assignexpr
+    >> *((lit(L';') | L',') >> assignexpr)
+    ;
 
 auto const assignexpr_def =
     *(symbol >> L'=') >> expression
@@ -313,9 +337,9 @@ auto const symbol_def =
     >>    *alnum
     ;
 
-BOOST_SPIRIT_DEFINE(assignexpr, expression, term, factor, factor2, prim, function_call, symbol);
+BOOST_SPIRIT_DEFINE(multiexpr, assignexpr, expression, term, factor, factor2, prim, function_call, symbol);
         
-auto start = assignexpr;
+auto start = multiexpr;
 
 } // namespace grammer
 
@@ -324,7 +348,7 @@ auto start = assignexpr;
 /// 一つの文字列を処理
 double process(const wstring& str)
 {
-    ast::assign expression;             // Our expression (AST)
+    ast::multiexpr expression;             // Our expression (AST)
 
     auto iter = str.begin();
     auto end = str.end();
