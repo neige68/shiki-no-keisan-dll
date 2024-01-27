@@ -63,6 +63,7 @@ struct operand : x3::variant<
     , x3::forward_ast<exp_operation>
     , x3::forward_ast<expression>
     , x3::forward_ast<function_call>
+    , x3::forward_ast<symbol>
     >
 {
     using base_type::base_type;
@@ -99,11 +100,18 @@ struct expression
     std::list<operation> rest;
 };
 
-/// シンボル(関数名)
+/// シンボル(関数名、変数名)
 struct symbol
 {
     wchar_t first;
     std::list<wchar_t> rest;
+};
+
+/// 代入
+struct assign
+{
+    std::list<symbol> variables;
+    expression expr;
 };
 
 /// 関数呼び出し
@@ -131,6 +139,10 @@ BOOST_FUSION_ADAPT_STRUCT(ast::expression,
     first, rest
 )
 
+BOOST_FUSION_ADAPT_STRUCT(ast::assign,
+    variables, expr
+)
+
 BOOST_FUSION_ADAPT_STRUCT(ast::function_call,
     fun_name, first_arg, rest_args
 )
@@ -145,6 +157,9 @@ BOOST_FUSION_ADAPT_STRUCT(ast::symbol,
 //
 
 namespace ast {
+
+// 変数と値
+map<wstring, double> variables;
 
 /// AST evaluator
 struct eval {
@@ -195,21 +210,34 @@ struct eval {
                 , boost::apply_visitor(*this, x.first)
                 , *this);
         }
+    double operator()(assign const& x) const
+        {
+            double result{(*this)(x.expr)};
+            for (auto const& v : x.variables)
+                variables[symbol_to_name(v)] = result;
+            return result;
+        }
     double operator()(function_call const& x) const
         {
-            std::wstring fun_name = (*this)(x.fun_name);
+            std::wstring fun_name = symbol_to_name(x.fun_name);
             std::vector<double> args;
             args.push_back(boost::apply_visitor(*this, x.first_arg));
             for (auto const& i : x.rest_args)
                 args.push_back(boost::apply_visitor(*this, i));
             return BuiltInFunctions::Instance()(fun_name, args);
         }
-    std::wstring operator()(symbol const& x) const
+    std::wstring symbol_to_name(symbol const& x) const
         {
             std::wstring result(1, x.first);
+            result.reserve(1 + x.rest.size());
             for (auto i : x.rest)
                 result += i;
             return result;
+        }
+    double operator()(symbol const& x) const
+        {
+            std::wstring name = symbol_to_name(x);
+            return variables[name];
         }
 };
 } // namespace ast
@@ -227,6 +255,7 @@ using x3::standard_wide::lit;
 using x3::standard_wide::alpha;
 using x3::standard_wide::alnum;
 
+x3::rule<class assignexpr, ast::assign> const assignexpr("代入式");
 x3::rule<class expression, ast::expression> const expression("式");
 x3::rule<class term, ast::expression> const term("項");
 x3::rule<class factor, ast::operand> const factor("因子");
@@ -234,6 +263,10 @@ x3::rule<class factor2, ast::exp_operation> const factor2("因子2");
 x3::rule<class prim, ast::operand> const prim("原始");
 x3::rule<class function_call, ast::function_call> const function_call("関数呼び出し");
 x3::rule<class symbol, ast::symbol> const symbol("シンボル");
+
+auto const assignexpr_def =
+    *(symbol >> L'=') >> expression
+    ;
 
 auto const expression_def =
     term
@@ -263,6 +296,7 @@ auto const factor2_def =
 auto const prim_def =
         function_call
     |   double_
+    |   symbol
     |   L'(' >> expression >> L')'
     ;
 
@@ -279,9 +313,9 @@ auto const symbol_def =
     >>    *alnum
     ;
 
-BOOST_SPIRIT_DEFINE(expression, term, factor, factor2, prim, function_call, symbol);
+BOOST_SPIRIT_DEFINE(assignexpr, expression, term, factor, factor2, prim, function_call, symbol);
         
-auto start = expression;
+auto start = assignexpr;
 
 } // namespace grammer
 
@@ -290,7 +324,7 @@ auto start = expression;
 /// 一つの文字列を処理
 double process(const wstring& str)
 {
-    ast::expression expression;             // Our expression (AST)
+    ast::assign expression;             // Our expression (AST)
 
     auto iter = str.begin();
     auto end = str.end();
