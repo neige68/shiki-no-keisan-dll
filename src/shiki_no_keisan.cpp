@@ -18,6 +18,7 @@
 
 #include "bltinfun.h"           // BuiltInFunctions
 #include "charconv.h"           // to_utf8
+#include "variables.h"          // Variables
 
 #include <boost/fusion/include/adapt_struct.hpp> // BOOST_FUSION_ADAPT_STRUCT
 #include <boost/optional.hpp>                    // boost::optional
@@ -169,9 +170,6 @@ BOOST_FUSION_ADAPT_STRUCT(ast::symbol,
 
 namespace ast {
 
-// 変数と値
-map<wstring, double> variables;
-
 /// AST evaluator
 struct eval {
     typedef double result_type;
@@ -225,7 +223,7 @@ struct eval {
         {
             double result{(*this)(x.expr)};
             for (auto const& v : x.variables)
-                variables[symbol_to_name(v)] = result;
+                Variables::Instance().set(symbol_to_name(v), result);
             return result;
         }
     double operator()(multiexpr const& x) const
@@ -255,7 +253,7 @@ struct eval {
     double operator()(symbol const& x) const
         {
             std::wstring name = symbol_to_name(x);
-            return variables[name];
+            return Variables::Instance().get(name);
         }
 };
 } // namespace ast

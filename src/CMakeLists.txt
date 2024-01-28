@@ -78,7 +78,7 @@ add_compile_definitions(CONFIG_CMAKE_VERSION_STR="${CMAKE_VERSION}")
 include_directories(../include)
 
 add_library(neige68.ShikiNoKeisan SHARED
-    shiki_no_keisan.cpp bltinfun.cpp charconv.cpp version.rc)
+    shiki_no_keisan.cpp bltinfun.cpp charconv.cpp variables.cpp version.rc)
 
 enable_testing()
 
