@@ -333,8 +333,8 @@ auto const function_call_def =
     ;
 
 auto const symbol_def =
-    alpha
-    >>    *alnum
+    (alpha | char_(L'_'))
+    >>    *(alnum | char_(L'_'))
     ;
 
 BOOST_SPIRIT_DEFINE(multiexpr, assignexpr, expression, term, factor, factor2, prim, function_call, symbol);
