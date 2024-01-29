@@ -102,6 +102,7 @@ Module vbsample
         EvalPrint("gamma(0.5)**2")
         EvalPrint("exp(-1/0)")
         EvalPrint("round(exp(gammaln(0.5)*2),2)")
+        EvalPrint("往路=120;復路=80;2/(1/往路+1/復路)")
     End Sub
 End Module
 ' end of <sample.vb>
