@@ -17,6 +17,7 @@
 #define bltinfun_h
 
 #include "charconv.h"           // utf8, utf8tow
+#include "variables.h"          // Variables
 
 #include <map>                  // std::map
 #include <utility>              // std::swap
@@ -36,24 +37,32 @@ public:
     /// 関数の型
     typedef double (*FunctionType)(Args const& args);
 
+    // *** const ***
+    /// 切捨時相対許容誤差予約変数名
+    static inline const wchar_t* RelativeToleranceAtTruncatingVariableName = L"_RT";
+    /// 切捨時絶対許容誤差予約変数名
+    static inline const wchar_t* AbsoluteToleranceAtTruncatingVariableName = L"_AT";
+
     // *** singleton ***
 private:
-    BuiltInFunctions() : RelativeToleranceAtTruncating_(1e-15), AbsoluteToleranceAtTruncating_(1e-15) {}
+    BuiltInFunctions() {
+        SetRelativeToleranceAtTruncating(1e-15);
+        SetAbsoluteToleranceAtTruncating(1e-15);
+    }
 public:
     /// シングルトン参照
     static BuiltInFunctions& Instance();
     ~BuiltInFunctions() {}
 
     // *** functions ***
-public:
     /// 切捨時相対許容誤差の取得
-    double RelativeToleranceAtTruncating() const { return RelativeToleranceAtTruncating_; }
+    double RelativeToleranceAtTruncating() const { return Variables::Instance().get(RelativeToleranceAtTruncatingVariableName); }
     /// 切捨時相対許容誤差の設定
-    double SetRelativeToleranceAtTruncating(double t) { std::swap(RelativeToleranceAtTruncating_, t); return t; }
+    double SetRelativeToleranceAtTruncating(double t) { return Variables::Instance().replace(RelativeToleranceAtTruncatingVariableName, t); }
     /// 切捨時絶対許容誤差の取得
-    double AbsoluteToleranceAtTruncating() const { return AbsoluteToleranceAtTruncating_; }
+    double AbsoluteToleranceAtTruncating() const { return Variables::Instance().get(AbsoluteToleranceAtTruncatingVariableName); }
     /// 切捨時絶対許容誤差の設定
-    double SetAbsoluteToleranceAtTruncating(double t) { std::swap(AbsoluteToleranceAtTruncating_, t); return t; }
+    double SetAbsoluteToleranceAtTruncating(double t) { return Variables::Instance().replace(AbsoluteToleranceAtTruncatingVariableName, t); }
     /// 組込関数追加
     void Add(std::wstring const& name, FunctionType fun)
         { FunctionsMap.insert(make_pair(name, fun)); }
@@ -65,10 +74,6 @@ public:
 
     // *** data ***
 private:
-    /// 切捨時相対許容誤差
-    double RelativeToleranceAtTruncating_;
-    /// 切捨時絶対許容誤差
-    double AbsoluteToleranceAtTruncating_;
     /// 組み込み関数名前から関数へのマップ
     std::map<std::wstring, FunctionType> FunctionsMap;
     
