@@ -40,6 +40,7 @@ public:
     void set(const std::wstring& name, double value) { map_[name] = value; }
     double replace(const std::wstring& name, double value) { std::swap(map_[name], value); return value; }
     double get(const std::wstring& name) const { return map_.at(name); }
+    bool defined(const std::wstring& name) const { return map_.count(name); }
 
     // *** data ***
 private:

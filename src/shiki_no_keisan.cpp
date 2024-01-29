@@ -253,6 +253,8 @@ struct eval {
     double operator()(symbol const& x) const
         {
             std::wstring name = symbol_to_name(x);
+            if (!Variables::Instance().defined(name))
+                throw runtime_error(to_utf8(L"変数 " + name + L" は定義されていません."));
             return Variables::Instance().get(name);
         }
 };
