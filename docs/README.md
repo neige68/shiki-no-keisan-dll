@@ -8,7 +8,11 @@ Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 [Boost Spirit X3](https://www.boost.org/doc/libs/1_84_0/libs/spirit/doc/x3/html/index.html) 
 を利用して作成しました。
 
-C++, C, C#, VB.NET のサンプルを添付しています。
+[C++](https://github.com/neige68/shiki-no-keisan-dll/blob/main/sample/vcpp/eval.cpp), 
+[C](https://github.com/neige68/shiki-no-keisan-dll/blob/main/sample/vc/sample.c), 
+[C#](https://github.com/neige68/shiki-no-keisan-dll/blob/main/sample/cs/sample.cs), 
+[VB.NET](https://github.com/neige68/shiki-no-keisan-dll/blob/main/sample/vb/sample.vb) 
+のサンプルを添付しています。
 
 C# と VB.NET のサンプルでは、プラットホームに AnyCPU を指定してコンパイルし、
 実行時に x86/x64 を判定して呼び出す DLL を切り分けるようにしています。
