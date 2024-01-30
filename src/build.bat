@@ -98,12 +98,12 @@ if not "%@exec_cmake%"=="" cmake %@CMAKE_OPT% ../../src
 msbuild ALL_BUILD.vcxproj /p:Configuration=Debug /m
 echo INFO: build.bat: msbuild Debug Done.
 if errorlevel 1 goto common_end
-ctest -C debug
+ctest -C debug -j %NUMBER_OF_PROCESSORS%
 if errorlevel 1 goto common_end
 msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m
 echo INFO: build.bat: msbuild Release Done.
 if errorlevel 1 goto common_end
-ctest -C release
+ctest -C release -j %NUMBER_OF_PROCESSORS%
 :common_end
 popd
 set @basename=neige68.ShikiNoKeisan
