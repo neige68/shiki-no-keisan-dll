@@ -82,6 +82,12 @@ add_library(neige68.ShikiNoKeisan SHARED
 
 enable_testing()
 
+# 時間がかかるので先に行う
+add_executable(test_variables test/test_variables.cpp)
+target_compile_definitions(test_variables PRIVATE _USE_MATH_DEFINES)
+target_link_libraries(test_variables neige68.ShikiNoKeisan)
+add_test(NAME test_variables COMMAND test_variables)
+
 add_executable(test_exp test/test_exp.cpp)
 target_compile_definitions(test_exp PRIVATE _USE_MATH_DEFINES)
 target_link_libraries(test_exp neige68.ShikiNoKeisan)
