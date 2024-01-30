@@ -2,9 +2,11 @@
 
 Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 
-四則演算・冪乗・括弧・組込関数を含む計算式の文字列を渡して、計算結果を double(倍精度浮動小数点)値で受け取れます。
+四則演算・冪乗・括弧・組込関数(27種)を含む計算式の文字列を渡して、計算結果を double(倍精度浮動小数点)値で受け取れます。
 
-自由に使える x64 用の DLL が無いようなので Boost Spirit X3 を利用して作成しました。
+自由に使える x64 用の DLL が無いようなので
+[Boost Spirit X3](https://www.boost.org/doc/libs/1_84_0/libs/spirit/doc/x3/html/index.html) 
+を利用して作成しました。
 
 C++, C, C#, VB.NET のサンプルを添付しています。
 
@@ -12,6 +14,13 @@ C# と VB.NET のサンプルでは、プラットホームに AnyCPU を指定�
 実行時に x86/x64 を判定して呼び出す DLL を切り分けるようにしています。
 
 Arm にはまだ対応していません。
+
+* [組込関数](https://neige68.github.io/shiki-no-keisan-dll/builtin_functions.html)
+
+floor, round などの関数では別途指定の許容誤差の吸収を行っています。
+[include/shiki_no_keisan.h](https://github.com/neige68/shiki-no-keisan-dll/blob/main/include/shiki_no_keisan.h)
+をご覧ください。
+初期値は 1e-15 になっています。
 
 ## C#サンプルの出力
 
@@ -104,4 +113,4 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
 
 * [github issues](https://github.com/neige68/shiki-no-keisan-dll/issues)
 
-* mail: shiki-no-keisan-dll@neige@ の2つめの@を .nu で置換してください
+* mail: shiki-no-keisan-dll _at_ neige.nu の _at_ を @ で置換してください

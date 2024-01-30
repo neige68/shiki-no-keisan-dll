@@ -50,7 +50,7 @@ void version()
 #else
     wcout << L" Debug";
 #endif
-    wcout << L" Version 0.02" << endl;
+    wcout << L" Version 1.00" << endl;
     wcout << L"Copyright (C) 2024 neige68" << endl;
 }
 

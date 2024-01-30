@@ -23,15 +23,21 @@
 <h1 id="shiki-no-keisan-dll-式の計算計算式評価dll-バイナリ-リリース用-ドキュメント">shiki-no-keisan-dll
 式の計算(計算式評価)DLL バイナリ リリース用 ドキュメント</h1>
 <p>Windows x86, x64 用の 式の計算(計算式評価)DLL です。</p>
-<p>四則演算・冪乗・括弧・組込関数を含む計算式の文字列を渡して、計算結果を
+<p>四則演算・冪乗・括弧・組込関数(27種)を含む計算式の文字列を渡して、計算結果を
 double(倍精度浮動小数点)値で受け取れます。</p>
-<p>自由に使える x64 用の DLL が無いようなので Boost Spirit X3
-を利用して作成しました。</p>
+<p>自由に使える x64 用の DLL が無いようなので <a href="https://www.boost.org/doc/libs/1_84_0/libs/spirit/doc/x3/html/index.html">Boost
+Spirit X3</a> を利用して作成しました。</p>
 <p>C++, C, C#, VB.NET のサンプルを添付しています。</p>
 <p>C# と VB.NET のサンプルでは、プラットホームに AnyCPU
 を指定してコンパイルし、 実行時に x86/x64 を判定して呼び出す DLL
 を切り分けるようにしています。</p>
 <p>Arm にはまだ対応していません。</p>
+<ul>
+<li><a href="https://neige68.github.io/shiki-no-keisan-dll/builtin_functions.html">組込関数</a></li>
+</ul>
+<p>floor, round などの関数では別途指定の許容誤差の吸収を行っています。
+<a href="https://github.com/neige68/shiki-no-keisan-dll/blob/main/include/shiki_no_keisan.h">include/shiki_no_keisan.h</a>
+をご覧ください。 初期値は 1e-15 になっています。</p>
 <h2 id="cサンプルの出力">C#サンプルの出力</h2>
 <pre><code>2*2+2/2 = 5
 1/3 = 0.333333333333333
@@ -102,8 +108,8 @@ VC142 に設定しておいてください。</p>
 <ul>
 <li><p><a href="https://github.com/neige68/shiki-no-keisan-dll/issues">github
 issues</a></p></li>
-<li><p>mail: shiki-no-keisan-dll@neige@ の2つめの@を .nu
-で置換してください</p></li>
+<li><p>mail: shiki-no-keisan-dll <em>at</em> neige.nu の <em>at</em> を
+@ で置換してください</p></li>
 </ul>
 </body>
 </html>

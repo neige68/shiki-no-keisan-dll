@@ -31,8 +31,10 @@ replace dist_readme.html %@dist% /u
 replace LICENSE %@dist% /a
 replace LICENSE %@dist% /u
 if not exist %@dist%\docs mkdir %@dist%\docs
-replace docs\*.html %@dist%\docs /a
-replace docs\*.html %@dist%\docs /u
+replace docs\builtin_functions.html %@dist%\docs /a
+replace docs\builtin_functions.html %@dist%\docs /u
+replace docs\*.md %@dist%\docs /a
+replace docs\*.md %@dist%\docs /u
 if not exist %@dist%\bin\x64 mkdir %@dist%\bin\x64
 replace bin\x64\*.dll %@dist%\bin\x64 /a
 replace bin\x64\*.dll %@dist%\bin\x64 /u
