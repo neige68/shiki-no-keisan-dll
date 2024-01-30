@@ -28,6 +28,7 @@
 #include <cmath>                // std::fabs
 #include <list>                 // std::list
 #include <map>                  // std::map
+#include <mutex>                // std::mutex
 #include <numeric>              // std::accumulate
 #include <stdexcept>            // std::runtime_error
 #include <string>               // std::string
@@ -356,7 +357,13 @@ double process(const wstring& str)
     bool r = phrase_parse(iter, end, grammar::start, space, expression);
 
     if (r && iter == end) {
-        return ast::eval{}(expression);
+        double rv;
+        static mutex mtx;
+        {
+            lock_guard<mutex> lg{mtx};
+            rv = ast::eval{}(expression);
+        }
+        return rv;
     }
     else {
         std::wstring rest{iter, end};
