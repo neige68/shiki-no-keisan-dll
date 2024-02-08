@@ -4,10 +4,7 @@ Windows x86, x64 用の 式の計算(計算式評価)DLL です。
 
 四則演算・冪乗・括弧・組込関数(27種)を含む計算式の文字列を渡して、計算結果を double(倍精度浮動小数点)値で受け取れます。
 
-アルファベットで始まり、アルファベットと数字からなる変数も使用できます。
-イコール(=)で代入し、セミコロン(;)またはコロン(,)で区切って複数の式が指定でき、最後の式の値が返されます。
-
-漢字、ひらがな、カタカナもアルファベットに含まれます。
+Ver.1.01 から変数が使用できるようになりました。
 
 自由に使える x64 (64ビット)用の DLL が無いようなので 
 [Boost Spirit X3](https://www.boost.org/doc/libs/1_84_0/libs/spirit/doc/x3/html/index.html) 
@@ -18,7 +15,9 @@ C++, C, C#, VB.NET のサンプルを添付しています。
 C# と VB.NET のサンプルでは、プラットホームに AnyCPU を指定してコンパイルし、
 実行時に x86/x64 を判定して呼び出す DLL を切り分けるようにしています。
 
-Arm にはまだ対応していません。
+その他詳しくは
+[https://neige68.github.io/shiki-no-keisan-dll/](https://neige68.github.io/shiki-no-keisan-dll/) 
+をご覧ください。
 
 ## C#サンプルの出力
 
@@ -106,10 +105,6 @@ Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 
   * lib/rd/x64/neige68.ShikiNoKeisan.lib - x64用インポート ライブラリ
 
   * lib/rd/x86/neige68.ShikiNoKeisan.lib - x86用インポート ライブラリ
-
-## 今後の予定
-
-* Arm 対応(実機が入手できたら)
 
 ## 連絡先
 
