@@ -7,7 +7,7 @@
 # (See accompanying file LICENSE or copy at
 #  https://www.boost.org/LICENSE_1_0.txt)
 
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.28)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 # スタティックリンク
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
@@ -21,7 +21,7 @@ project(sample CXX)
 
 # BOOST を探す
 # C: ドライブ以外から探すには 環境変数 CMAKE_PREFIX_PATH の設定が必要
-find_package(Boost 1.81 REQUIRED COMPONENTS program_options)
+find_package(Boost 1.84 REQUIRED COMPONENTS program_options)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
 

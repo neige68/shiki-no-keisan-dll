@@ -7,7 +7,7 @@
 # (See accompanying file LICENSE or copy at
 #  https://www.boost.org/LICENSE_1_0.txt)
 
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.28)
 
 # スタティックランタイムライブラリ使用
 if ($ENV{USE_STATIC_RUNTIME_LIBRARY})
@@ -38,7 +38,7 @@ message(STATUS "VER_PRODUCTVERSION: ${VER_PRODUCTVERSION}")
 
 # BOOST を探す
 # C: ドライブ以外から探すには 環境変数 CMAKE_PREFIX_PATH の設定が必要
-find_package(Boost 1.81 REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost 1.84 REQUIRED COMPONENTS unit_test_framework)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
 

@@ -60,7 +60,7 @@ C++, C, C#, VB.NET のサンプル コード、ビルド済みの DLL、イン�
 
 ## ビルド
 
-CMake 3.24, Visual Studio 2019 (VC14.2), Boost 1.81 を使用しています。用意してください。
+CMake 3.28, Visual Studio 2019 (VC14.2), Boost 1.84 を使用しています。用意してください。
 
 Visual Studio 2019 の vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておいてください。
 

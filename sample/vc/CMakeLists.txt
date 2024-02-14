@@ -7,7 +7,7 @@
 # (See accompanying file LICENSE or copy at
 #  https://www.boost.org/LICENSE_1_0.txt)
 
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.28)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 # スタティックリンク
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
