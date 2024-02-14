@@ -30,6 +30,7 @@
 #include <map>                  // std::map
 #include <mutex>                // std::mutex
 #include <numeric>              // std::accumulate
+#include <sstream>              // std::wostringstream
 #include <stdexcept>            // std::runtime_error
 #include <string>               // std::string
 
