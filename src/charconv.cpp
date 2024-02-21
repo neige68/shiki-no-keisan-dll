@@ -24,7 +24,7 @@ using namespace std;
 //------------------------------------------------------------
 
 /// UTF-8 の BOM (Byte Order Mark)
-const string utf8bom{"\xEF\xBB\xBF"};
+const string utf8bom{"\xEF\xBB\xBF"}; // NOLINT(runtime/string)
 
 // string から wstring への変換
 static

@@ -340,10 +340,10 @@ auto const symbol_def =
     ;
 
 BOOST_SPIRIT_DEFINE(multiexpr, assignexpr, expression, term, factor, factor2, prim, function_call, symbol);
-        
+
 auto start = multiexpr;
 
-} // namespace grammer
+} // namespace grammar
 
 //************************************************************
 
@@ -483,9 +483,9 @@ const char* __stdcall SHIKI_NO_KEISAN_GetIdentMessageA()
     //
 #ifdef CONFIG_USE_STATIC_RUNTIME_LIBRARY
     static const char runtimeLibrary[] = "$RuntimeLibrary: Static $";
-#else    
+#else
     static const char runtimeLibrary[] = "$RuntimeLibrary: Dynamic $";
-#endif    
+#endif
     os << runtimeLibrary << endl;
     //
 #if defined(CONFIG_CMAKE_VERSION_STR)
@@ -497,9 +497,10 @@ const char* __stdcall SHIKI_NO_KEISAN_GetIdentMessageA()
     static const char identCmakeCompilerVersion[] = "$CmakeCompilerVersion: " CONFIG_COMPILER_VERSION " $";
     os << identCmakeCompilerVersion << endl;
 #endif
-//        
+//
 #if defined(_MSC_FULL_VER)
-    static const char identCompilerVersion[] = "$CompilerVersion: " BOOST_PP_STRINGIZE(_MSC_FULL_VER) " (_MSC_FULL_VER) $";
+    static const char identCompilerVersion[]
+        = "$CompilerVersion: " BOOST_PP_STRINGIZE(_MSC_FULL_VER) " (_MSC_FULL_VER) $";
     os << identCompilerVersion << endl;
 #endif
     //
@@ -521,7 +522,7 @@ const char* __stdcall SHIKI_NO_KEISAN_GetIdentMessageA()
     static const char identArch[] = "$Arch: arm64 $";
 #elif defined(_M_ARM)
     static const char identArch[] = "$Arch: arm $";
-#else    
+#else
     static const char identArch[] = "$Arch: otherwise $";
 #endif
     os << identArch << endl;

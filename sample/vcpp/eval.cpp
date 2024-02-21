@@ -42,7 +42,7 @@ void version()
     wcout << L"shiki-no-keisan-dll C++ Sample: Eval";
 #if defined(_WIN64)
     wcout << L" x64";
-#else        
+#else
     wcout << L" x86";
 #endif
 #if defined(NDEBUG)
@@ -94,8 +94,12 @@ int wmain(int argc, wchar_t** argv)
             ("help,H", "ヘルプ")
             ("version,V", "バージョン表示")
             ("precision,P", po::wvalue<int>()->default_value(6), "出力精度")
-            ("relative-tolerance,R", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetRelativeToleranceAtTruncating()), "切捨時相対許容誤差")
-            ("absolute-tolerance,A", po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetAbsoluteToleranceAtTruncating()), "切捨時絶対許容誤差")
+            ("relative-tolerance,R",
+             po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetRelativeToleranceAtTruncating()),
+             "切捨時相対許容誤差")
+            ("absolute-tolerance,A",
+             po::wvalue<double>()->default_value(SHIKI_NO_KEISAN_GetAbsoluteToleranceAtTruncating()),
+             "切捨時絶対許容誤差")
             ;
         po::options_description opt("オプション");
         opt.add(visible).add(hidden);

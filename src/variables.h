@@ -18,6 +18,7 @@
 
 #include <map>                  // std::map
 #include <string>               // std::wstring
+#include <utility>              // std::swap
 
 //------------------------------------------------------------
 //

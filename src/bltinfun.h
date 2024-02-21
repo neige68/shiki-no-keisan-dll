@@ -56,13 +56,17 @@ public:
 
     // *** functions ***
     /// 切捨時相対許容誤差の取得
-    double RelativeToleranceAtTruncating() const { return Variables::Instance().get(RelativeToleranceAtTruncatingVariableName); }
+    double RelativeToleranceAtTruncating() const
+        { return Variables::Instance().get(RelativeToleranceAtTruncatingVariableName); }
     /// 切捨時相対許容誤差の設定
-    double SetRelativeToleranceAtTruncating(double t) { return Variables::Instance().replace(RelativeToleranceAtTruncatingVariableName, t); }
+    double SetRelativeToleranceAtTruncating(double t)
+        { return Variables::Instance().replace(RelativeToleranceAtTruncatingVariableName, t); }
     /// 切捨時絶対許容誤差の取得
-    double AbsoluteToleranceAtTruncating() const { return Variables::Instance().get(AbsoluteToleranceAtTruncatingVariableName); }
+    double AbsoluteToleranceAtTruncating() const
+        { return Variables::Instance().get(AbsoluteToleranceAtTruncatingVariableName); }
     /// 切捨時絶対許容誤差の設定
-    double SetAbsoluteToleranceAtTruncating(double t) { return Variables::Instance().replace(AbsoluteToleranceAtTruncatingVariableName, t); }
+    double SetAbsoluteToleranceAtTruncating(double t)
+        { return Variables::Instance().replace(AbsoluteToleranceAtTruncatingVariableName, t); }
     /// 組込関数追加
     void Add(std::wstring const& name, FunctionType fun)
         { FunctionsMap.insert(make_pair(name, fun)); }
@@ -76,7 +80,7 @@ public:
 private:
     /// 組み込み関数名前から関数へのマップ
     std::map<std::wstring, FunctionType> FunctionsMap;
-    
+
 };
 
 //------------------------------------------------------------

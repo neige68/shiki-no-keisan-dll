@@ -21,7 +21,7 @@ void EvalPrint(const char* str)
 {
     double result;
     const char* msg;
-    
+
     SHIKI_NO_KEISAN_ClearErrorMessage();
     result = SHIKI_NO_KEISAN_EvalA(str);
     msg = SHIKI_NO_KEISAN_GetErrorMessageA();
@@ -37,7 +37,7 @@ int main()
     printf("sample.c");
 #if defined(_WIN64)
     printf(" x64");
-#else        
+#else
     printf(" x86");
 #endif
 #if defined(NDEBUG)
