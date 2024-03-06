@@ -10,7 +10,7 @@ rem  https://www.boost.org/LICENSE_1_0.txt)
 
 rem Note: clean
 rem
-rem Windows:   XP and lator
+rem Windows:   XP and later
 rem
 
 setlocal

@@ -10,7 +10,7 @@ rem  https://www.boost.org/LICENSE_1_0.txt)
 
 rem Note: バイナリリリース作成
 rem
-rem Windows:   10 and lator
+rem Windows:   10 and later
 rem
 
 setlocal
