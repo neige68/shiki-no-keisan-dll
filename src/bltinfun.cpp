@@ -375,12 +375,19 @@ double rounddown(double x, double d = 0)
 {
     const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
-    if (d != 0)
+    double ie = 1;
+    if (d > 0) {
         e = pow(10, rounddown(d));
+        ie = 1 / e;
+    }
+    else if (d < 0) {
+        ie = pow(10, -rounddown(d));
+        e = 1 / ie;
+    }
     auto axe = fabs(x) * e;
     if (axe * ret < 0.5)
         axe *= 1 + ret;
-    auto y = floor(axe) / e;
+    auto y = floor(axe) * ie;
     if (x < 0) y = -y;
     return y;
 }
@@ -410,12 +417,19 @@ double roundup(double x, double d = 0)
 {
     const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
-    if (d != 0)
+    double ie = 1;
+    if (d > 0) {
         e = pow(10, rounddown(d));
+        ie = 1 / e;
+    }
+    else if (d < 0) {
+        ie = pow(10, -rounddown(d));
+        e = 1 / ie;
+    }
     auto axe = fabs(x) * e;
     if (axe * ret < 0.5)
         axe *= 1 - ret;
-    auto y = ceil(axe) / e;
+    auto y = ceil(axe) * ie;
     if (x < 0) y = -y;
     return y;
 }
@@ -447,12 +461,19 @@ double myround(double x, double d = 0)
 {
     const auto ret = BuiltInFunctions::Instance().RelativeToleranceAtTruncating();
     double e = 1;
-    if (d != 0)
+    double ie = 1;
+    if (d > 0) {
         e = pow(10, rounddown(d));
+        ie = 1 / e;
+    }
+    else if (d < 0) {
+        ie = pow(10, -rounddown(d));
+        e = 1 / ie;
+    }
     auto axe = fabs(x) * e;
     if (axe * ret < 0.5)
         axe *= 1 + ret;
-    auto y = floor(axe + 0.5) / e;
+    auto y = floor(axe + 0.5) * ie;
     if (x < 0) y = -y;
     return y;
 }
