@@ -18,6 +18,7 @@
 
 #include "bltinfun.h"           // BuiltInFunctions
 #include "charconv.h"           // to_utf8
+#include "double_parser.h"      // my_parser::my_double
 #include "variables.h"          // Variables
 
 #include <boost/fusion/include/adapt_struct.hpp> // BOOST_FUSION_ADAPT_STRUCT
@@ -321,7 +322,7 @@ auto const factor2_def =
 
 auto const prim_def =
         function_call
-    |   double_
+    |   my_parser::my_double
     |   symbol
     |   L'(' >> expression >> L')'
     ;
